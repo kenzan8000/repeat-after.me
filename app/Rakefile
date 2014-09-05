@@ -1,0 +1,29 @@
+task :clean do
+  cleanup
+end
+
+task :build => :clean do
+  compass
+  javascript
+end
+
+task :server do
+  server
+end
+
+def cleanup
+  sh 'rm -rf public/js/*'
+  sh 'rm -rf public/css/*'
+end
+
+def compass(opts = '')
+  sh 'compass compile -c config.ru --force ' + opts
+end
+
+def javascript
+  sh 'mv assets/js/* public/js/'
+end
+
+def server
+  sh 'ruby app.rb'
+end

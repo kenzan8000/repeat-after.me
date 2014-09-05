@@ -1,0 +1,19 @@
+source 'https://rubygems.org'
+
+gem 'rake'
+gem 'sinatra'
+#gem 'sinatra-activerecord'
+#gem 'omniauth-facebook'
+gem 'sass'
+gem 'haml'
+gem 'rspec'
+
+group :production do
+  gem 'pg'
+end
+
+group :development do
+  gem 'shotgun'
+  gem 'sinatra-reloader'
+  gem 'sqlite3'
+end

@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %meta{:charset => "utf-8"}
+    %title tongueless
+
+    %script{:type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"}
+    %script{:type => "text/javascript", :src => "/js/app.js"}
+    %link{:href => "css/app.css", :rel => "stylesheet", :type => "text/css"}
+  %body
+    %h1 repeat after me
+    %button{:id => "startRecording"} record
+    %button{:id => "stopRecording"} stop
+    %h2 recording
+    <audio id="audio" autoplay="" controls=""></audio>
+    %h2 log
+    %pre{:id => "log"}
