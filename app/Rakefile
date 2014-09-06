@@ -21,7 +21,7 @@ def compass(opts = '')
 end
 
 def javascript
-  sh 'mv assets/js/* public/js/'
+  sh 'cp assets/js/* public/js/'
 end
 
 def server
