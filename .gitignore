@@ -1,5 +1,6 @@
 .sass-cache/
-public/js/vendor/
+app/public/js/*
+app/public/css/*
 test/js/
 
 ### /Users/naoya/.gitignore-boilerplates/ruby.gitignore

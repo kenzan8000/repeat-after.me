@@ -5,7 +5,13 @@
     %title repeat after me
 
     %script{:type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"}
-    %script{:type => "text/javascript", :src => "/js/app.js"}
+    %script{:type => "text/javascript", :src => "/js/mp3Recorder.js"}
     %link{:href => "css/app.css", :rel => "stylesheet", :type => "text/css"}
   %body
     %h1 repeat after me
+    %button{:onclick => "startRecording(this);"} record
+    %button{:onclick => "stopRecording(this);"} stop
+    %h2 recording
+    <audio id="audio" autoplay="" controls=""></audio>
+    %h2 log
+    %pre{:id => "log"}

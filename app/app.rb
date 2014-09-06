@@ -13,6 +13,10 @@ get '/' do
   haml :index
 end
 
+get '/record*' do
+  haml :record
+end
+
 #get "/js/*.js" do
 #  javascript :application
 #end
