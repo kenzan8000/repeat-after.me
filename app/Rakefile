@@ -25,5 +25,5 @@ def javascript
 end
 
 def server
-  sh 'ruby app.rb'
+  sh 'ruby app.rb -e development'
 end

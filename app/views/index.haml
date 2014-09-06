@@ -9,3 +9,6 @@
     %link{:href => "css/app.css", :rel => "stylesheet", :type => "text/css"}
   %body
     %h1 repeat after me
+    %p "Welcome! #{session[:user_name]}"
+    %a{:href => "/login"} login
+    %a{:href => "/logout"} logout

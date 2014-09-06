@@ -1,6 +1,7 @@
 .sass-cache/
 app/public/js/*
 app/public/css/*
+app/config/auth.yml
 test/js/
 
 ### /Users/naoya/.gitignore-boilerplates/ruby.gitignore
