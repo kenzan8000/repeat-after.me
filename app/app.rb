@@ -6,7 +6,7 @@ set :haml, {:format => :html5}
 enable :sessions, :logging
 
 
-#require_relative 'models/init'
+require_relative 'models/init'
 
 
 # OmniAuth
