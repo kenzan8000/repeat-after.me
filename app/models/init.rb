@@ -1,15 +1,11 @@
 # ActiveRecord
 configure :development do
-  ActiveRecord::Base.establish_connection(
-    adapter: 'sqlite3',
-    database: 'app.sqlite3'
-  )
+  db_config = YAML.load_file('config/database.yml')
+  ActiveRecord::Base.establish_connection(db_config['development'])
 end
 configure :production do
-  ActiveRecord::Base.establish_connection(
-  adapter: 'postgresql',
-  database: 'app'
-  )
+  db_config = YAML.load_file('config/database.yml')
+  ActiveRecord::Base.establish_connection(db_config['production'])
 end
 
 

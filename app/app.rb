@@ -7,6 +7,7 @@ enable :sessions, :logging
 
 
 require_relative 'models/init'
+require './models/tongue_twister.rb' if development?
 
 
 # OmniAuth
@@ -30,6 +31,10 @@ end
 
 get '/' do
   haml :index
+end
+
+get '/tongue_twisters*' do
+  haml :tongue_twisters
 end
 
 get '/record*' do

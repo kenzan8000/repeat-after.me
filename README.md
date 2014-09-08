@@ -2,7 +2,7 @@
 
 share tongue-twister you pronounced.
 
-### add localhost
+### hosts setting
 ```shell
 vim etc/hosts
 ```
@@ -10,7 +10,7 @@ vim etc/hosts
 127.0.0.1           local.repeat.after.me
 ```
 
-### add setting
+### omniauth setting
 ```shell
 vim app/config/auth.yml
 ```
@@ -30,6 +30,12 @@ development:
 
 production:
     ...
+```
+
+### migration
+```shell
+cd app
+rake migrate
 ```
 
 ### run app

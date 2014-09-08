@@ -94,6 +94,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord
   haml
   omniauth-facebook
   pg

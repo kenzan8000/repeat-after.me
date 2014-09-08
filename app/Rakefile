@@ -1,3 +1,7 @@
+require 'sinatra/activerecord'
+require 'sinatra/activerecord/rake'
+
+
 task :clean do
   cleanup
 end
@@ -9,6 +13,11 @@ end
 
 task :server do
   server
+end
+
+task :migrate do
+  migrate
+  init_tongue_twister
 end
 
 def cleanup
@@ -26,4 +35,12 @@ end
 
 def server
   sh 'ruby app.rb -e development'
+end
+
+def migrate
+  sh 'bundle exec rake db:migrate'
+end
+
+def init_tongue_twister
+  sh 'ruby ./../resources/csv/init_tongue_twister.rb'
 end
