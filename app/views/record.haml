@@ -15,6 +15,8 @@
     %p Teacher Google pronounces
     %a{:href => "#{@tts_uri.to_s}"} mp3
 
+    %p #{@ipa}
+
     %button{:onclick => "startRecording(this);"} record
     %button{:onclick => "stopRecording(this);"} stop
 

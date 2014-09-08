@@ -47,6 +47,7 @@ GEM
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     pg (0.17.1)
+    pronounce (0.0.1)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -98,6 +99,7 @@ DEPENDENCIES
   haml
   omniauth-facebook
   pg
+  pronounce
   rake
   rspec
   sass

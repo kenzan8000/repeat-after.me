@@ -13,6 +13,7 @@ require './models/tongue_twister.rb' if development?
 # constant
 TTS_API = 'http://translate.google.com/translate_tts'
 
+
 # OmniAuth
 use OmniAuth::Builder do
   auth_config = YAML.load_file('config/auth.yml')
@@ -49,6 +50,12 @@ get '/record*' do
   # google tts api
   @tts_uri = URI(TTS_API)
   @tts_uri.query = URI.encode_www_form({'ie' => 'UTF-8', 'tl' => 'en-us', 'q' => @tongue_twister.text})
+  # American IPA
+  @ipa = Array.new
+  words = @tongue_twister.text.split(' ')
+  words.each do |word|
+    @ipa.push(Pronounce.how_do_i_pronounce(word))
+  end
 
   haml :record
 end

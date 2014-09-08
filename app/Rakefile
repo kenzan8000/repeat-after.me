@@ -38,7 +38,10 @@ def server
 end
 
 def migrate
+  sh 'rm -rf ./db/schema.rb'
+  sh 'rm -rf ./db/development.rb'
   sh 'bundle exec rake db:migrate'
+  sh 'bundle exec rake db:create_migration NAME=create_tongue_twisters'
 end
 
 def init_tongue_twister
