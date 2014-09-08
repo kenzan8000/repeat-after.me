@@ -10,5 +10,5 @@
   %body
     %h1 tongue twisters
     - @tongue_twisters.each do |tongue_twister|
-      %a{:href => "/record?text='#{tongue_twister.id}'"}  #{tongue_twister.id}:#{tongue_twister.text}
+      %a{:href => "/record?tongue_twister_id=#{tongue_twister.id}"}  #{tongue_twister.id}:#{tongue_twister.text}
       %br

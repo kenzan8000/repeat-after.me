@@ -9,9 +9,15 @@
     %link{:href => "css/app.css", :rel => "stylesheet", :type => "text/css"}
   %body
     %h1 repeat after me
+
+    %p #{@tongue_twister.text}
+
+    %p Teacher Google pronounces
+    %a{:href => "#{@tts_uri.to_s}"} mp3
+
     %button{:onclick => "startRecording(this);"} record
     %button{:onclick => "stopRecording(this);"} stop
+
     %h2 recording
-    <audio id="audio" autoplay="" controls=""></audio>
     %h2 log
     %pre{:id => "log"}
