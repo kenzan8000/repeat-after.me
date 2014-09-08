@@ -34,6 +34,7 @@ get '/' do
 end
 
 get '/tongue_twisters*' do
+  @tongue_twisters = TongueTwister.all
   haml :tongue_twisters
 end
 
