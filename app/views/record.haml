@@ -11,11 +11,12 @@
     %h1 repeat after me
 
     %p #{@tongue_twister.text}
+    %p
+      - @ipa.each do |word|
+        #{word}　
 
     %p Teacher Google pronounces
     %a{:href => "#{@tts_uri.to_s}"} mp3
-
-    %p #{@ipa}
 
     %button{:onclick => "startRecording(this);"} record
     %button{:onclick => "stopRecording(this);"} stop

@@ -1,20 +1,17 @@
 require 'bundler'
 Bundler.require
-
-
-set :haml, {:format => :html5}
-enable :sessions, :logging
-
-
 require_relative 'models/init'
-require './models/tongue_twister.rb' if development?
+# activerecord
+require './models/tongue_twister.rb'
+# the others
+require './models/util.rb'
 
 
 # constant
-TTS_API = 'http://translate.google.com/translate_tts'
+TTS_API = 'http://translate.google.com/translate_tts' # google tts api
 
 
-# OmniAuth
+# omniauth
 use OmniAuth::Builder do
   auth_config = YAML.load_file('config/auth.yml')
   auth_config = auth_config['development'] if development?
@@ -31,6 +28,21 @@ end
 #    end
 #  end
 #end
+
+
+configure :development do
+  # log
+  enable :sessions, :logging
+
+#  # sass
+#  Compass.configuration do |config|
+#    config.project_path = File.dirname(__FILE__)
+#    config.sass_dir = './assets/'
+#  end
+#  set :sass, Compass.sass_engine_options
+end
+# haml
+set :haml, {:format => :html5}
 
 
 get '/' do
@@ -51,11 +63,7 @@ get '/record*' do
   @tts_uri = URI(TTS_API)
   @tts_uri.query = URI.encode_www_form({'ie' => 'UTF-8', 'tl' => 'en-us', 'q' => @tongue_twister.text})
   # American IPA
-  @ipa = Array.new
-  words = @tongue_twister.text.split(' ')
-  words.each do |word|
-    @ipa.push(Pronounce.how_do_i_pronounce(word))
-  end
+  @ipa = AmericanIPA.text_to_ipa(@tongue_twister.text)
 
   haml :record
 end
@@ -73,6 +81,8 @@ get '/logout' do
   redirect '/'
 end
 
+
+# omniauth
 get '/auth/:provider/callback' do
   info = request.env['omniauth.auth']
   session[:uid] = info['uid']
@@ -85,17 +95,14 @@ get '/auth/failure' do
   redirect '/'
 end
 
-#get '/js/*.js' do
-#  javascript :application
-#end
+
+# assets
+#configure :development do
+#  get '/js/*.js' do
+#    javascript :application
+#  end
 #
-#get '/css/*.css' do
-#  sass :application
-#end
-#
-#get '/auth/google/callback' do
-#  @auth = request.env['omniauth.auth']
-#  #params[:oauth_token]
-#  #params[:oauth_verifier]
-#  haml :index
+#  get '/css/*.css' do
+#    sass :scss_file
+#  end
 #end
