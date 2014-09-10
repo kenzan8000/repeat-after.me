@@ -1,0 +1,11 @@
+%div.home-menu.pure-menu.pure-menu-open.pure-menu-horizontal.pure-menu-fixed
+  %a.pure-menu-heading{:href => ""} repeat after me
+  %ul
+    -if session[:user_name]
+      %li
+        %a{:href => "/profile"} profile
+      %li
+        %a{:href => "/logout"} logout
+    -else
+      %li
+        %a{:href => "/auth/facebook"} login

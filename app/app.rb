@@ -88,7 +88,7 @@ get '/auth/:provider/callback' do
   session[:uid] = info['uid']
   session[:user_name] = info['info']['name']
   session[:image]= info['info']['image']
-  redirect '/'
+  redirect '/tongue_twisters'
 end
 
 get '/auth/failure' do
