@@ -3,9 +3,11 @@
   %ul
     -if session[:user_name]
       %li
-        %a{:href => "/profile"} profile
+        %a{:href => "/tongue_twisters"} Tongue Twisters
       %li
-        %a{:href => "/logout"} logout
+        %a{:href => "/my_page"} My Page
+      %li
+        %a{:href => "/logout"} Logout
     -else
       %li
-        %a{:href => "/auth/facebook"} login
+        %a{:href => "/auth/facebook"} Login
