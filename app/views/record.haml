@@ -6,23 +6,25 @@
 
     %script{:type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"}
     %script{:type => "text/javascript", :src => "/js/mp3Recorder.js"}
+    %link{:href => "http://yui.yahooapis.com/pure/0.5.0/pure-min.css", :rel => "stylesheet", :type => "text/css"}
     %link{:href => "css/app.css", :rel => "stylesheet", :type => "text/css"}
   %body
     =haml :header
 
-    %p #{@tongue_twister.text}
-    %p
-      - @ipa.each do |word|
-        #{word}
+    %div.content
+      %p #{@tongue_twister.text}
+      %p
+        - @ipa.each do |word|
+          #{word}
 
-    %p Teacher Google pronounces
-    %a{:href => "#{@tts_uri.to_s}"} mp3
+      %p Teacher Google pronounces
+      %a{:href => "#{@tts_uri.to_s}"} mp3
 
-    %button{:onclick => "startRecording(this);"} record
-    %button{:onclick => "stopRecording(this);"} stop
+      %button{:onclick => "startRecording(this);"} record
+      %button{:onclick => "stopRecording(this);"} stop
 
-    %h2 recording
-    %h2 log
-    %pre{:id => "log"}
+      %h2 recording
+      %h2 log
+      %pre{:id => "log"}
 
     =haml :footer

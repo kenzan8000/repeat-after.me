@@ -1,13 +1,18 @@
-%div.header.pure-menu.pure-menu-open.pure-menu-horizontal
-  %a.pure-menu-heading{:href => "/"} repeat after me
-  %ul
-    -if session[:user_name]
-      %li
-        %a{:href => "/tongue_twisters"} Tongue Twisters
-      %li
-        %a{:href => "/my_page"} My Page
-      %li
-        %a{:href => "/logout"} Logout
-    -else
-      %li
-        %a{:href => "/auth/facebook"} Login
+%div.header-wrapper
+
+  %div.header.pure-menu.pure-menu-open.pure-menu-horizontal
+    %a.pure-menu-heading{:href => "/"}
+      repeat after me
+      %span.header-sub-title &nbsp;&nbsp;- 新しい英語スピーキングの練習サイト -
+
+    %ul
+      -if session[:user_name]
+        %li
+          %a{:href => "/my_page"} マイページ
+        %li
+          %a{:href => "/tongue_twisters"} 英語一覧
+        %li
+          %a{:href => "/logout"} サインアウト
+      -else
+        %li
+          %a{:href => "/auth/facebook"} サインイン

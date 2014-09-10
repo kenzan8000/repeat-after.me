@@ -1,6 +1,3 @@
-@import url("http://yui.yahooapis.com/pure/0.5.0/pure-min.css")
-
-
 // common
 body
   color: #7f8c8d
@@ -8,17 +5,20 @@ body
 
 
 // header
+.header-wrapper
+  box-shadow: 0 1px 1px -1px rgba(0, 0, 0, 1.0)
+  text-align: center
+
 .header
+  max-width: 960px
+  margin: 0 auto
   padding: 0.5em
   text-align: center
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1)
+  .header-sub-title
+    font-size: 70%
+    color: #999
   &.pure-menu-open
     background: white
-
-.pure-menu.pure-menu-open
-  border-bottom: none
-
-.header
   .pure-menu-heading
     color: #333
     font-weight: 400
@@ -32,6 +32,9 @@ body
       background: #ecf0f1
       border: none
       color: #2980b9
+
+.pure-menu.pure-menu-open
+  border-bottom: none
 
 @media (min-width: 48em)
   .header
@@ -51,6 +54,5 @@ body
 // content
 .content
   max-width: 960px
-  min-width: 480px
   margin: 0 auto
   padding: 0.5em
