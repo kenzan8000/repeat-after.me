@@ -8,7 +8,7 @@
     %script{:type => "text/javascript", :src => "/js/mp3Recorder.js"}
     %link{:href => "css/app.css", :rel => "stylesheet", :type => "text/css"}
   %body
-    %h1 repeat after me
+    =haml :header
 
     %p #{@tongue_twister.text}
     %p
@@ -24,3 +24,5 @@
     %h2 recording
     %h2 log
     %pre{:id => "log"}
+
+    =haml :footer
