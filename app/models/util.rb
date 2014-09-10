@@ -31,6 +31,10 @@ module AmericanIPA
     # ARPABET to American IPA
     ipas = Array.new
     arpabet_words.each do |arpabets|
+      if !arpabets then
+        next
+      end
+
       ipa = ''
       arpabets.each do |arpabet|
         ipa += ARPABET_IPA_TABLE[arpabet]
