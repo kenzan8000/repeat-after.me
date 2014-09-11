@@ -26,7 +26,6 @@ module AmericanIPA
     words.each do |word|
       arpabet_words.push(Pronounce.how_do_i_pronounce(word.delete(',').delete('.').delete('?')))
     end
-    ipas = arpabet_words
 
     # ARPABET to American IPA
     ipas = Array.new

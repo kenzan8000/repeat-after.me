@@ -64,15 +64,17 @@ end
 
 get '/record*' do
   if session[:uid]
+    # paginator
     tongue_twister_id = params[:tongue_twister_id]
 
     # tongue_twister
-    @tongue_twister = TongueTwister.find(tongue_twister_id)
+    tongue_twister = TongueTwister.find(tongue_twister_id)
+    @tongue_twister = tongue_twister.text.split(' ')
     # google tts api
     @tts_uri = URI(TTS_API)
-    @tts_uri.query = URI.encode_www_form({'ie' => 'UTF-8', 'tl' => 'en-us', 'q' => @tongue_twister.text})
+    @tts_uri.query = URI.encode_www_form({'ie' => 'UTF-8', 'tl' => 'en-us', 'q' => tongue_twister.text})
     # American IPA
-    @ipa = AmericanIPA.text_to_ipa(@tongue_twister.text)
+    @ipa = AmericanIPA.text_to_ipa(tongue_twister.text)
 
     haml :record
   else

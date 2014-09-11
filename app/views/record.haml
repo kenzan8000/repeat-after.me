@@ -5,31 +5,48 @@
     %title 英語を録音してみよう
 
     %script{:type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"}
-    %script{:type => "text/javascript", :src => "/js/mp3Recorder.js"}
+    / %script{:type => "text/javascript", :src => "/js/mp3Recorder.js"}
     %link{:href => "http://yui.yahooapis.com/pure/0.5.0/pure-min.css", :rel => "stylesheet", :type => "text/css"}
+    %link{:href => "http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css", :rel => "stylesheet"}
     %link{:href => "css/app.css", :rel => "stylesheet", :type => "text/css"}
+    %link{:href => "css/record.css", :rel => "stylesheet", :type => "text/css"}
   %body
     =haml :header
 
     %div.content
-      %audio{:id => "google_tts", :src => "#{@tts_uri.to_s}", :controls => "", :autoplay => ""}
-        %source{:src => "#{@tts_uri.to_s}", :type => "audio/mp3"}
 
-      %p #{@tongue_twister.text}
-      %p
-        - @ipa.each do |word|
-          #{word}
+      &gt;
+      %a{:href => "/tongue_twisters"} 英語一覧
+      %br
 
-      %p Teacher Google pronounces
-      %a{:href => "#{@tts_uri.to_s}"} mp3
+      %div.record
+        %audio{:src => "", :controls => "", :autoplay => ""}
 
-      %button{:onclick => "startRecording(this);"} record
-      %button{:onclick => "stopRecording(this);"} stop
+        / tongue twister and American IPA
+        %p.tongue-twister
+          - for i in 0..@tongue_twister.length
+            %ruby
+              %rb #{@tongue_twister[i]}
+              %rt.ruby-char #{@ipa[i]}
 
-      %h2 recording
-      %h2 log
-      %pre{:id => "log"}
+        / record button
+        %p
+          %a.pure-button.record-button.record-start-button{:href => "#"}
+            %i.fa.fa-microphone &nbsp;録音
+          &nbsp;
+          %a.pure-button.record-button.play-start-button{:href => "#"}
+            %i.fa.fa-play &nbsp;再生
 
-      // TODO link previous and next
+      / %p Teacher Google pronounces
+      / %a{:href => "#{@tts_uri.to_s}"} mp3
+
+      / %button{:onclick => "startRecording(this);"} record
+      / %button{:onclick => "stopRecording(this);"} stop
+
+      / %h2 recording
+      / %h2 log
+      / %pre{:id => "log"}
+
+      / TODO link previous and next
 
     =haml :footer
