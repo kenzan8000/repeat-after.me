@@ -11,6 +11,21 @@ require './models/util.rb'
 TTS_API = 'http://translate.google.com/translate_tts' # google tts api
 
 
+configure :development do
+  # log
+  enable :sessions, :logging
+
+#  # sass
+#  Compass.configuration do |config|
+#    config.project_path = File.dirname(__FILE__)
+#    config.sass_dir = './assets/'
+#  end
+#  set :sass, Compass.sass_engine_options
+end
+# haml
+set :haml, {:format => :html5}
+
+
 # omniauth
 use OmniAuth::Builder do
   auth_config = YAML.load_file('config/auth.yml')
@@ -30,23 +45,16 @@ end
 #end
 
 
-configure :development do
-  # log
-  enable :sessions, :logging
-
-#  # sass
-#  Compass.configuration do |config|
-#    config.project_path = File.dirname(__FILE__)
-#    config.sass_dir = './assets/'
-#  end
-#  set :sass, Compass.sass_engine_options
-end
-# haml
-set :haml, {:format => :html5}
-
-
 get '/' do
   haml :index
+end
+
+get '/my_page' do
+  if session[:uid]
+    haml :my_page
+  else
+    redirect '/'
+  end
 end
 
 get '/tongue_twisters*' do
@@ -55,24 +63,28 @@ get '/tongue_twisters*' do
 end
 
 get '/record*' do
-  tongue_twister_id = params[:tongue_twister_id]
+  if session[:uid]
+    tongue_twister_id = params[:tongue_twister_id]
 
-  # tongue_twister
-  @tongue_twister = TongueTwister.find(tongue_twister_id)
-  # google tts api
-  @tts_uri = URI(TTS_API)
-  @tts_uri.query = URI.encode_www_form({'ie' => 'UTF-8', 'tl' => 'en-us', 'q' => @tongue_twister.text})
-  # American IPA
-  @ipa = AmericanIPA.text_to_ipa(@tongue_twister.text)
+    # tongue_twister
+    @tongue_twister = TongueTwister.find(tongue_twister_id)
+    # google tts api
+    @tts_uri = URI(TTS_API)
+    @tts_uri.query = URI.encode_www_form({'ie' => 'UTF-8', 'tl' => 'en-us', 'q' => @tongue_twister.text})
+    # American IPA
+    @ipa = AmericanIPA.text_to_ipa(@tongue_twister.text)
 
-  haml :record
+    haml :record
+  else
+    redirect '/'
+  end
 end
 
 get '/login' do
-  if session[:uid] == nil
-    haml :login
-  else
+  if session[:uid]
     redirect '/auth/facebook'
+  else
+    haml :login
   end
 end
 
@@ -88,7 +100,7 @@ get '/auth/:provider/callback' do
   session[:uid] = info['uid']
   session[:user_name] = info['info']['name']
   session[:image]= info['info']['image']
-  redirect '/tongue_twisters'
+  redirect :tongue_twisters
 end
 
 get '/auth/failure' do

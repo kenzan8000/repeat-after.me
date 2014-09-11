@@ -1,3 +1,8 @@
+// variable
+$content-width: 960px
+$content-padding: 0.5em
+
+
 // common
 body
   color: #7f8c8d
@@ -10,9 +15,9 @@ body
   text-align: center
 
 .header
-  max-width: 960px
+  max-width: $content-width
   margin: 0 auto
-  padding: 0.5em
+  padding: $content-padding
   text-align: center
   .header-sub-title
     font-size: 70%
@@ -36,7 +41,7 @@ body
 .pure-menu.pure-menu-open
   border-bottom: none
 
-@media (min-width: 48em)
+@media (min-width: $content-width)
   .header
     text-align: left
     ul
@@ -45,14 +50,13 @@ body
 
 // footer
 .footer
-  padding: 0.5em
+  padding: $content-padding
   text-align: right
-  color: #666
+  color: #888
   background: #bdc3c7
 
 
 // content
 .content
-  max-width: 960px
+  max-width: $content-width
   margin: 0 auto
-  padding: 0.5em

@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:charset => "utf-8"}
-    %title repeat after me
+    %title 英語を録音してみよう
 
     %script{:type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"}
     %script{:type => "text/javascript", :src => "/js/mp3Recorder.js"}
@@ -12,6 +12,9 @@
     =haml :header
 
     %div.content
+      %audio{:id => "google_tts", :src => "#{@tts_uri.to_s}", :controls => "", :autoplay => ""}
+        %source{:src => "#{@tts_uri.to_s}", :type => "audio/mp3"}
+
       %p #{@tongue_twister.text}
       %p
         - @ipa.each do |word|
@@ -26,5 +29,7 @@
       %h2 recording
       %h2 log
       %pre{:id => "log"}
+
+      // TODO link previous and next
 
     =haml :footer
