@@ -42,23 +42,6 @@
           %a.pure-button.record-button.post-button{:href => "#"}
             %i.fa.fa-check &nbsp;投稿
 
-      / ad
-      %div.ad-wrapper
-        %table{:style => "100%"}
-          %tr
-            %td.ad
-              =haml :ad_00
-              &nbsp;&nbsp;
-            %td.ad
-              =haml :ad_01
-              &nbsp;&nbsp;
-            %td.ad
-              =haml :ad_02
-              &nbsp;&nbsp;
-            %td.ad
-              =haml :ad_03
-              &nbsp;&nbsp;
-
-      / TODO link previous and next
+      = haml :ad
 
     =haml :footer
