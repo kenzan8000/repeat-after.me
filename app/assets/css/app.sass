@@ -1,6 +1,7 @@
 // variable
+$header-footer-padding: 0.5em 0 0.5em 0
 $content-width: 960px
-$content-padding: 0.5em
+$content-padding: 2em
 
 
 // common
@@ -20,7 +21,7 @@ body
 .header
   max-width: $content-width
   margin: 0 auto
-  padding: $content-padding
+  padding: $header-footer-padding
   text-align: center
   .header-sub-title
     font-size: 70%
@@ -53,7 +54,7 @@ body
 
 // footer
 .footer
-  padding: $content-padding
+  padding: $header-footer-padding
   text-align: right
   color: #888
   background: #bdc3c7
@@ -63,4 +64,10 @@ body
 .content
   max-width: $content-width
   margin: 0 auto
-  padding: 2em 2em
+  padding: $content-padding $content-padding
+
+.ad-wrapper
+  padding-top: $content-padding
+  display: block !important
+
+.ad

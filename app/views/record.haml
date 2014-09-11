@@ -42,15 +42,22 @@
           %a.pure-button.record-button.post-button{:href => "#"}
             %i.fa.fa-check &nbsp;投稿
 
-      / %p Teacher Google pronounces
-      / %a{:href => "#{@tts_uri.to_s}"} mp3
-
-      / %button{:onclick => "startRecording(this);"} record
-      / %button{:onclick => "stopRecording(this);"} stop
-
-      / %h2 recording
-      / %h2 log
-      / %pre{:id => "log"}
+      / ad
+      %div.ad-wrapper
+        %table{:style => "100%"}
+          %tr
+            %td.ad
+              =haml :ad_00
+              &nbsp;&nbsp;
+            %td.ad
+              =haml :ad_01
+              &nbsp;&nbsp;
+            %td.ad
+              =haml :ad_02
+              &nbsp;&nbsp;
+            %td.ad
+              =haml :ad_03
+              &nbsp;&nbsp;
 
       / TODO link previous and next
 
