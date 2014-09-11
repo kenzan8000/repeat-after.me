@@ -8,7 +8,8 @@ require './models/util.rb'
 
 
 # constant
-TTS_API = 'http://translate.google.com/translate_tts' # google tts api
+#TTS_API = 'http://translate.google.com/translate_tts' # google tts api
+#TTS_API = 'http://tts-api.com/tts.mp3' # tts api
 
 
 configure :development do
@@ -70,9 +71,11 @@ get '/record*' do
     # tongue_twister
     tongue_twister = TongueTwister.find(tongue_twister_id)
     @tongue_twister = tongue_twister.text.split(' ')
-    # google tts api
-    @tts_uri = URI(TTS_API)
-    @tts_uri.query = URI.encode_www_form({'ie' => 'UTF-8', 'tl' => 'en-us', 'q' => tongue_twister.text})
+    # tts api
+    #@tts_uri = URI(TTS_API)
+    #@tts_uri.query = URI.encode_www_form({'ie' => 'UTF-8', 'tl' => 'en-us', 'q' => tongue_twister.text})
+    #@tts_uri.query = URI.encode_www_form({'q' => tongue_twister.text, '&return_url' => '1'})
+
     # American IPA
     @ipa = AmericanIPA.text_to_ipa(tongue_twister.text)
 
