@@ -294,15 +294,15 @@
 //  };
 
 // play Text to Speech
-var playTTS = function (var url) {
-    // remove
-    var ttsPlayer = $("#tts_player");
-    if (ttsPlayer) { ttsPlayer.remove() }
-
+var playTTS = function (url) {
     // append
-    ttsPlayer = $("iframe");
-    ttsPlayer.src = url;
-    ttsPlayer.style.visibility = "hidden";
+    var ttsPlayer = $("iframe");
+    ttsPlayer.attr("src", url);
+    ttsPlayer.css("visibility","hidden");
+    ttsPlayer.css("width","0");
+    ttsPlayer.css("height","0");
+    ttsPlayer.css("left","-100px");
+    ttsPlayer.css("position","absolute");
     ttsPlayer.frameborder = "0";
     ttsPlayer.marginheight = "0";
     ttsPlayer.scrolling = "no";
