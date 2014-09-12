@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:charset => "utf-8"}
-    %title 英語を録音してみよう
+    %title 録音してみよう
 
     %script{:type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"}
     %script{:type => "text/javascript", :src => "/js/recode.js"}
@@ -17,7 +17,7 @@
 
       %p.bread-crumbs
         &gt;
-        %a.bread-crumb{:href => "/tongue_twisters"} 英語一覧
+        %a.bread-crumb{:href => "/tongue_twisters"} 早口言葉一覧
 
       %div.record
         / google tts
@@ -34,13 +34,12 @@
 
         / buttons
         %p.record-button-wrapper
-          %a.pure-button.record-button.record-start-button{:href => "#"}
-            %i.fa.fa-microphone &nbsp;録音
+          %a.pure-button.record-button.record-start-button#record_button{:onclick => "toggleRecording();"}
+            %i.fa.fa-microphone#record_icon &nbsp;録音
           &nbsp;
-          %a.pure-button.record-button.play-start-button{:href => "#"}
-            %i.fa.fa-play &nbsp;再生
+          %audio.recorded-voice-player#recorded_voice_player{:autoplay => "false", :controls => ""}
           &nbsp;
-          %a.pure-button.record-button.post-button{:href => "#"}
+          %a.pure-button.record-button.post-button#post_button{}
             %i.fa.fa-check &nbsp;投稿
 
       = haml :ad
