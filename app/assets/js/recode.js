@@ -1,6 +1,10 @@
 var audio_context = null;
 var recorder = null;
-var isRecordingNow = false;
+
+var NOW_IS_FREE = 0;
+var NOW_IS_RECORDING = 1;
+var NOW_IS_CONVERTING_MP3 = 2;
+var recordingStatus = NOW_IS_FREE;
 
 window.onload = function () {
     $("#post_button").css("opacity", "0.25").css("-moz-opacity", "0.25").css("-khtml-opacity", "0.25").css("filter", "alpha(opacity=40)");
@@ -23,7 +27,7 @@ window.onload = function () {
 };
 
 var toggleRecording = function() {
-    if (recorder == null) { return; }
+    if (recorder == null || recordingStatus == NOW_IS_CONVERTING_MP3) { return; }
 
     // start recording
     var startRecording = function() {
@@ -37,19 +41,19 @@ var toggleRecording = function() {
         recorder.clear();
     };
 
-    if (isRecordingNow == false) {
+    if (recordingStatus == false) {
         startRecording();
-        isRecordingNow = true;
-        $("#record_button").removeClass("record-start-button").addClass("record-stop-button");
-        $("#record_icon").removeClass("fa-microphone").addClass("fa-stop");
+        recordingStatus = NOW_IS_RECORDING;
+        $("#record_button").removeClass("record-start-button").removeClass("record-indicator-button").addClass("record-stop-button");
+        $("#record_icon").removeClass("fa-circle-o-notch").removeClass("fa-spin").removeClass("fa-microphone").addClass("fa-stop");
         $("#record_icon").text(" 停止");
     }
     else {
         stopRecording();
-        isRecordingNow = false;
-        $("#record_button").removeClass("record-stop-button").addClass("record-start-button");
-        $("#record_icon").removeClass("fa-stop").addClass("fa-microphone");
-        $("#record_icon").text("  録音");
+        recordingStatus = NOW_IS_CONVERTING_MP3;
+        $("#record_button").removeClass("record-start-button").removeClass("record-stop-button").addClass("record-indicator-button");
+        $("#record_icon").removeClass("fa-microphone").removeClass("fa-stop").addClass("fa-circle-o-notch").addClass("fa-spin");
+        $("#record_icon").text("");
     }
 };
 
@@ -128,7 +132,6 @@ var playTTS = function(url) {
             fileReader.onload = function() {
                 //Converting to Mp3
                 $("#post_button").css("opacity", "0.25").css("-moz-opacity", "0.25").css("-khtml-opacity", "0.25").css("filter", "alpha(opacity=40)");
-
                 arrayBuffer = this.result;
                 var buffer = new Uint8Array(arrayBuffer),
                 data = parseWav(buffer);
@@ -142,6 +145,10 @@ var playTTS = function(url) {
                         var player = $("#recorded_voice_player");
                         player.attr("src", 'data:audio/mp3;base64,'+encode64(e.data.buf));
                         $("#post_button").css("opacity", "1.0").css("-moz-opacity", "1.0").css("-khtml-opacity", "1.0").css("filter", "alpha(opacity=40)");
+                        $("#record_button").removeClass("record-stop-button").removeClass("record-indicator-button").addClass("record-start-button");
+                        $("#record_icon").removeClass("fa-circle-o-notch").removeClass("fa-spin").removeClass("fa-stop").addClass("fa-microphone");
+                        $("#record_icon").text(" 録音");
+                        recordingStatus = NOW_IS_FREE;
                     }
                 };
             };
