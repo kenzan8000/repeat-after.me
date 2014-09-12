@@ -292,3 +292,20 @@
 ////      __log('No live audio input: ' + e);
 //    });
 //  };
+
+// play Text to Speech
+var playTTS = function (var url) {
+    // remove
+    var ttsPlayer = $("#tts_player");
+    if (ttsPlayer) { ttsPlayer.remove() }
+
+    // append
+    ttsPlayer = $("iframe");
+    ttsPlayer.src = url;
+    ttsPlayer.style.visibility = "hidden";
+    ttsPlayer.frameborder = "0";
+    ttsPlayer.marginheight = "0";
+    ttsPlayer.scrolling = "no";
+    ttsPlayer.attr("id", "tts_player");
+    $("body").append(ttsPlayer);
+};

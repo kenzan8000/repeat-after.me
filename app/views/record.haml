@@ -5,8 +5,7 @@
     %title 英語を録音してみよう
 
     %script{:type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"}
-    / %script{:type => "text/javascript", :src => "/js/mp3Recorder.js"}
-    %script{:type => "text/javascript", :src => "js/recode.js"}
+    %script{:type => "text/javascript", :src => "/js/recode.js"}
     %link{:href => "http://yui.yahooapis.com/pure/0.5.0/pure-min.css", :rel => "stylesheet", :type => "text/css"}
     %link{:href => "http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css", :rel => "stylesheet"}
     %link{:href => "css/app.css", :rel => "stylesheet", :type => "text/css"}
@@ -21,8 +20,11 @@
         %a{:href => "/tongue_twisters"} 英語一覧
 
       %div.record
-        %audio{:id => "tts_audio", :src => "", :controls => "", :autoplay => "false"}
+        / google tts
+        %div.tts_wrapper
 
+          %a.tts-play-button.pure-button.get-started-button{:onclick => "playTTS('#{@tts_uri.to_s}');"}
+            %i.fa.fa-play &nbsp;&nbsp;Google先生のお手本
 
         / tongue twister and American IPA
         %p.tongue-twister
