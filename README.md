@@ -1,6 +1,10 @@
 # repeat after me
 
-share tongue-twister you pronounced.
+Share tongue-twister you pronounced.
+
+Sample. Now I'm making.
+![screenshot](https://raw2.github.com/kenzan8000/repeat-after.me/master/resources/screenshot/screenshot.jpg "screenshot")
+
 
 ## hosts
 ```shell

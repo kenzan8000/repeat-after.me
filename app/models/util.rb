@@ -1,6 +1,5 @@
 
 module AmericanIPA
-
   ARPABET_IPA_TABLE = {
       'AA' => 'ɑ',  'AA0' => 'ɑ',  'AA1' => '\'ɑ', 'AA2' => 'ɑ',  'HH' =>  'h',  'Z'  =>  'z',
       'AE' => 'æ',  'AE0' => 'æ',  'AE1' => '\'æ', 'AE2' => 'æ',  'B'  =>  'b',  'ZH' =>  'ʒ',

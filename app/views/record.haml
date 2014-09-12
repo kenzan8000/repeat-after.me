@@ -15,14 +15,13 @@
 
     %div.content
 
-      %p.navigation-link
+      %p.bread-crumbs
         &gt;
-        %a{:href => "/tongue_twisters"} 英語一覧
+        %a.bread-crumb{:href => "/tongue_twisters"} 英語一覧
 
       %div.record
         / google tts
         %div.tts_wrapper
-
           %a.tts-play-button.pure-button.get-started-button{:onclick => "playTTS('#{@tts_uri.to_s}');"}
             %i.fa.fa-play &nbsp;&nbsp;Google先生のお手本
 
