@@ -59,9 +59,10 @@ var toggleRecording = function() {
 
 // play Text to Speech
 var playTTS = function(url) {
-    var ttsPlayer = $("iframe");
+    $("#tts_player").remove();
+    var ttsPlayer = $("<iframe><iframe/>");
     ttsPlayer.attr("src", url);
-    ttsPlayer.css("visibility","hidden").css("width","0").css("height","0").css("left","-100px").css("position","absolute");
+    ttsPlayer.css("width","0").css("height","0").css("left","-999").css("position","absolute");
     ttsPlayer.frameborder = "0";
     ttsPlayer.marginheight = "0";
     ttsPlayer.scrolling = "no";

@@ -45,10 +45,11 @@ end
 
 module AmazonAssociates
   ADS = [
-    :ad_00,
-    :ad_01,
-    :ad_02,
-    :ad_03
+    :ad_00
+#    :ad_00,
+#    :ad_01,
+#    :ad_02,
+#    :ad_03
   ]
 
   def self.randomAd
