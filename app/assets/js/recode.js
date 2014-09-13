@@ -7,7 +7,7 @@ var NOW_IS_CONVERTING_MP3 = 2;
 var recordingStatus = NOW_IS_FREE;
 
 window.onload = function () {
-    $("#post_button").css("opacity", "0.25").css("-moz-opacity", "0.25").css("-khtml-opacity", "0.25").css("filter", "alpha(opacity=40)");
+    $("#post_button").addClass("disable");
 
     // initialize recoding
     try {
@@ -132,7 +132,8 @@ var playTTS = function(url) {
 
             fileReader.onload = function() {
                 //Converting to Mp3
-                $("#post_button").css("opacity", "0.25").css("-moz-opacity", "0.25").css("-khtml-opacity", "0.25").css("filter", "alpha(opacity=40)");
+                $("#post_button").addClass("disable");
+
                 arrayBuffer = this.result;
                 var buffer = new Uint8Array(arrayBuffer),
                 data = parseWav(buffer);
@@ -145,7 +146,7 @@ var playTTS = function(url) {
                         //Done converting to Mp3
                         var player = $("#recorded_voice_player");
                         player.attr("src", 'data:audio/mp3;base64,'+encode64(e.data.buf));
-                        $("#post_button").css("opacity", "1.0").css("-moz-opacity", "1.0").css("-khtml-opacity", "1.0").css("filter", "alpha(opacity=40)");
+                        $("#post_button").removeClass("disable");
                         $("#record_button").removeClass("record-stop-button").removeClass("record-indicator-button").addClass("record-start-button");
                         $("#record_icon").removeClass("fa-circle-o-notch").removeClass("fa-spin").removeClass("fa-stop").addClass("fa-microphone");
                         $("#record_icon").text(" 録音");
