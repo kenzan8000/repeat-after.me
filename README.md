@@ -36,6 +36,20 @@ production:
     ...
 ```
 
+## flickr
+```shell
+vim app/config/flickr.yml
+```
+```yml
+development:
+  key: 'your_key'
+  secret: 'your_secret'
+
+production:
+  key: 'your_key'
+  secret: 'your_secret'
+```
+
 ## database
 ### setting
 ```shell
