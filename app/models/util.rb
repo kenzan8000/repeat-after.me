@@ -59,4 +59,27 @@ end
 
 
 module Flicker
+
+  def self.upload_mp3?(mp3)
+    return false unless mp3
+
+    flickr_config = YAML.load_file('config/flickr.yml')
+    flickr_config = flickr_config['development'] if development?
+    flickr_config = flickr_config['production'] if production?
+
+    FlickRaw.api_key = flickr_config['key']
+    FlickRaw.shared_secret = flickr_config['secret']
+    flickr.access_token = flickr_config['access_token']
+    flickr.access_secret = flickr_config['access_secret']
+
+    login = flickr.test.login
+    photo_id = flickr.upload_photo file_path, :title => "Title", :description => "This is the description"
+    return false unless photo_id
+
+    info = flickr.photos.getInfo(:photo_id => photo_id)
+    #puts FlickRaw.url_o(info) #=> http://farmx.staticflickr.com/xxxx/xxxxxxxxxxxx_o.jpgとなっていれば成功
+    FlickRaw.url_o(info)
+  end
+
+
 end
