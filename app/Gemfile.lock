@@ -34,6 +34,7 @@ GEM
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.3)
+    flickraw (0.9.8)
     haml (4.0.5)
       tilt
     hashie (3.3.1)
@@ -114,6 +115,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   compass
+  flickraw
   haml
   omniauth-facebook
   pg

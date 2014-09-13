@@ -56,3 +56,7 @@ module AmazonAssociates
     ADS[rand(ADS.length)]
   end
 end
+
+
+module Flicker
+end
