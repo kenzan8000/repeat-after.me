@@ -77,8 +77,7 @@ module Flicker
     return false unless photo_id
 
     info = flickr.photos.getInfo(:photo_id => photo_id)
-    #puts FlickRaw.url_o(info) #=> http://farmx.staticflickr.com/xxxx/xxxxxxxxxxxx_o.jpgとなっていれば成功
-    FlickRaw.url_o(info)
+    puts FlickRaw.url_o(info) #=> http://farmx.staticflickr.com/xxxx/xxxxxxxxxxxx_o.jpgとなっていれば成功
   end
 
 
