@@ -42,6 +42,11 @@
           %a.pure-button.record-button.post-button#post_button{}
             %i.fa.fa-check &nbsp;投稿
 
+        %form(method="post" enctype='multipart/form-data')
+          %input(type='file' name='file')
+          %br
+          %input(type='submit' value='upload')
+
       = haml :ad
 
     =haml :footer

@@ -85,6 +85,19 @@ get '/record*' do
   end
 end
 
+post "/record*" do
+  f = params[:file]
+  if f
+    save_path = "./public/post/#{f[:filename]}"
+
+    File.open(save_path, 'wb') do |f|
+      p params[:file][:tempfile]
+      f.write params[:file][:tempfile].read
+    end
+  else
+  end
+end
+
 get '/login' do
   if session[:uid]
     redirect '/auth/facebook'
