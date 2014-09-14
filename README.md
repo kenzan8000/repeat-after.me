@@ -36,44 +36,8 @@ production:
     ...
 ```
 
-## flickr
-register flickr developer  
-make the following setting file  
-```shell
-vim app/config/flickr.yml
-```
-```yml
-development:
-  key: 'your_key'
-  secret: 'your_secret'
-
-production:
-  key: 'your_key'
-  secret: 'your_secret'
-```
-get pin
-```shell
-cd app
-rake flickr
-```
-write access_token and access_secret
-```shell
-vim app/config/flickr.yml
-```
-```yml
-development:
-  key: 'your_key'
-  secret: 'your_secret'
-  access_token: 'your_access_token'
-  access_secret: 'your_access_secret'
-
-production:
-  key: 'your_key'
-  secret: 'your_secret'
-  access_token: 'your_access_token'
-  access_secret: 'your_access_secret'
-```
-
+## ffmpeg
+install ffmpeg to your server  
 
 ## database
 ### setting
