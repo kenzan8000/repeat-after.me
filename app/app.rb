@@ -89,13 +89,16 @@ post "/record*" do
   f = params[:file]
   if f
     save_path = "./public/post/#{f[:filename]}"
-
     File.open(save_path, 'wb') do |f|
       p params[:file][:tempfile]
-      f.write params[:file][:tempfile].read
+      #f.write params[:file][:tempfile].read
+      @hoge = params[:file][:tempfile].read
     end
   else
+    @hoge = "shippai"
   end
+
+  @hoge
 end
 
 get '/login' do
