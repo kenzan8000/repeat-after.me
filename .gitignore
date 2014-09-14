@@ -1,6 +1,8 @@
 .sass-cache/
 app/public/js/*
 app/public/css/*
+app/public/post/*.mp3
+app/public/post/*.mp4
 app/config/auth.yml
 app/config/database.yml
 app/config/flickr.yml

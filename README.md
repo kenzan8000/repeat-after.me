@@ -29,7 +29,7 @@ development:
       name: 'hoge',
       app_id: 'YOUR_APP_ID',
       app_secret: 'YOUR_APP_SECRET',
-      scope: 'hoge,fuga'
+      scope: 'public_profile,publish_actions,user_videos'
     }
 
 production:

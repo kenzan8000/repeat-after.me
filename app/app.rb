@@ -88,17 +88,14 @@ end
 post "/record*" do
   f = params[:file]
   if f
-    save_path = "./public/post/#{f[:filename]}"
+    save_path = "./public/post/mp4.mp3"
     File.open(save_path, 'wb') do |f|
       p params[:file][:tempfile]
-      #f.write params[:file][:tempfile].read
-      @hoge = params[:file][:tempfile].read
+      f.write params[:file][:tempfile].read
+      system("ffmpeg -i './public/post/mp4.jpg' -i '#{save_path}' -ar 44100 -vcodec mpeg4 -y './public/post/output.mp4'")
     end
   else
-    @hoge = "shippai"
   end
-
-  @hoge
 end
 
 get '/login' do

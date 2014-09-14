@@ -56,6 +56,3 @@ module AmazonAssociates
     ADS[rand(ADS.length)]
   end
 end
-
-
-#system("ffmpeg -i "img/common_mp4.jpg" -i mp4.mp3 -ar 44100 -vcodec mpeg4 -y output.mp4")
