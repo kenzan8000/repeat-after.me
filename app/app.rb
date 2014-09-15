@@ -83,6 +83,7 @@ get '/record' do
 end
 
 post "/record" do
+  response = {}
   if session[:uid] == nil
     response['application_code'] = '401'
     return response.to_json
@@ -91,7 +92,6 @@ post "/record" do
   # convert mp3 to mp4
   mp4_path = MP4Converter.mp4_path(params)
 
-  response = {}
   if mp4_path
     response['application_code'] = '200'
     response['redirect_url'] = '/record_detail'
