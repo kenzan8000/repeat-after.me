@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140908063344) do
+ActiveRecord::Schema.define(version: 20140915141647) do
 
-  create_table "tongue_twisters", force: true do |t|
+  create_table "record_titles", force: true do |t|
     t.string   "text"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -17,11 +17,7 @@ end
 
 task :migrate do
   migrate
-  init_tongue_twister
-end
-
-task :flickr do
-  get_flickr_pin
+  init_record_title
 end
 
 def cleanup
@@ -46,33 +42,11 @@ def migrate(env = 'development')
     sh 'rm -rf ./db/schema.rb'
     sh 'rm -rf ./db/development.rb'
     sh 'bundle exec rake db:migrate'
-    sh 'bundle exec rake db:create_migration NAME=create_tongue_twisters'
-  elif env == 'production'
+    sh 'bundle exec rake db:create_migration NAME=create_record_titles'
+  elsif env == 'production'
   end
 end
 
-def init_tongue_twister
-  sh 'ruby ./../resources/csv/init_tongue_twister.rb'
-end
-
-def get_flickr_pin(env = 'development')
-  require 'flickraw'
-
-  flickr_config = YAML.load_file('config/flickr.yml')
-  flickr_config = flickr_config[env]
-
-  FlickRaw.api_key = flickr_config['key']
-  FlickRaw.shared_secret = flickr_config['secret']
-
-  token = flickr.get_request_token
-  auth_url = flickr.get_authorize_url(token['oauth_token'], :perms => 'delete')
-  sh "open #{auth_url}"
-  puts "input pin:"
-  pin = STDIN.gets
-
-  verify = pin.strip
-  flickr.get_access_token(token['oauth_token'], token['oauth_token_secret'], verify)
-  login = flickr.test.login
-  puts 'access_token:' + flickr.access_token
-  puts 'access_secret:' + flickr.access_secret
+def init_record_title
+  sh 'ruby ./../resources/csv/init_record_title.rb'
 end

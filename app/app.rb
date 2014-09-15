@@ -2,7 +2,7 @@ require 'bundler'
 Bundler.require
 require_relative 'models/init'
 # activerecord
-require './models/tongue_twister.rb'
+require './models/record_title.rb'
 # the others
 require './models/util.rb'
 
@@ -12,15 +12,10 @@ TTS_API = 'http://translate.google.com/translate_tts' # google tts api
 
 
 configure :development do
-  # log
   enable :sessions, :logging
-
-#  # sass
-#  Compass.configuration do |config|
-#    config.project_path = File.dirname(__FILE__)
-#    config.sass_dir = './assets/'
-#  end
-#  set :sass, Compass.sass_engine_options
+end
+configure :production do
+  enable :sessions
 end
 # haml
 set :haml, {:format => :html5}
@@ -35,55 +30,39 @@ use OmniAuth::Builder do
   provider :facebook, auth_config['providers']['app_id'], auth_config['providers']['app_secret'], :scope => auth_config['providers']['scope']
 end
 
-#before do
-#  if request.cookies['rack.session']
-#    session_id = Digest::SHA1.hexdigest( request.cookies['rack.session'] )
-#    if @session = Session.find_by_session_id(session_id)
-#      @login_user = @session.data[:user]
-#    end
-#  end
-#end
-
 
 get '/' do
   haml :index
 end
 
-get '/my_page' do
-  if session[:uid]
-    haml :my_page
-  else
-    redirect '/'
-  end
+get '/record/titles' do
+  @record_titles = RecordTitle.all
+  haml :record_titles
 end
 
-get '/tongue_twisters' do
-  @tongue_twisters = TongueTwister.all
-  haml :tongue_twisters
-end
-
-get '/record' do
+get '/record/post' do
   # paginator
-  tongue_twister_id = params[:tongue_twister_id]
+  record_title_id = params[:record_title_id]
 
-  if session[:uid] && tongue_twister_id
-    tongue_twister = TongueTwister.find(tongue_twister_id)
-    # tongue_twister
-    @tongue_twister = tongue_twister.text.split(' ')
+  if session[:uid] && record_title_id
+    record_title = RecordTitle.find(record_title_id)
+    # record_title
+    @record_title = record_title.text.split(' ')
     # tts api
     @tts_uri = URI(TTS_API)
-    @tts_uri.query = URI.encode_www_form({'ie' => 'UTF-8', 'tl' => 'en-us', 'q' => tongue_twister.text})
+    @tts_uri.query = URI.encode_www_form({'ie' => 'UTF-8', 'tl' => 'en-us', 'q' => record_title.text})
     # American IPA
-    @ipa = AmericanIPA.text_to_ipa(tongue_twister.text)
+    @ipa = AmericanIPA.text_to_ipa(record_title.text)
 
-    haml :record
+    haml :record_post
   else
     redirect '/'
   end
 end
 
-post "/record" do
+post "/record/post" do
   response = {}
+  # 401
   if session[:uid] == nil
     response['application_code'] = '401'
     return response.to_json
@@ -91,10 +70,9 @@ post "/record" do
 
   # convert mp3 to mp4
   mp4_path = MP4Converter.mp4_path(params)
-
   if mp4_path
     response['application_code'] = '200'
-    response['redirect_url'] = '/record_detail'
+    response['redirect_url'] = '/record/detail'
   else
     response['application_code'] = '500'
     return response.to_json
@@ -103,8 +81,16 @@ post "/record" do
   response.to_json
 end
 
-get "/record_detail" do
+get "/record/detail" do
   haml :record_detail
+end
+
+get '/user' do
+  haml :user
+end
+
+get '/tutorial' do
+  haml :tutorial
 end
 
 get '/login' do
@@ -127,7 +113,7 @@ get '/auth/:provider/callback' do
   session[:uid] = info['uid']
   session[:user_name] = info['info']['name']
   session[:image]= info['info']['image']
-  redirect :tongue_twisters
+  redirect '/record/titles'
 end
 
 get '/auth/failure' do

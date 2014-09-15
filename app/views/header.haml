@@ -8,9 +8,9 @@
     %ul
       -if session[:user_name]
         %li
-          %a{:href => "/my_page"} マイページ
+          %a{:href => "/user"} マイページ
         %li
-          %a{:href => "/tongue_twisters"} 早口言葉
+          %a{:href => "/record/titles"} 早口言葉
         %li
           %a{:href => "/logout"} サインアウト
       -else

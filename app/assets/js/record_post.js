@@ -145,8 +145,8 @@ var playTTS = function(url) {
 
 
 (function(window) {
-    var WORKER_PATH = 'js/recorderWorker.js';
-    var encoderWorker = new Worker('js/mp3Worker.js');
+    var WORKER_PATH = '/js/recorder_worker.js';
+    var encoderWorker = new Worker('/js/mp3_worker.js');
 
     var Recorder = function(source, cfg) {
         var config = cfg || {};

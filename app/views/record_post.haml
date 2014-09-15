@@ -5,11 +5,11 @@
     %title 録音してみよう
 
     %script{:type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"}
-    %script{:type => "text/javascript", :src => "/js/recode.js"}
+    %script{:type => "text/javascript", :src => "/js/record_post.js"}
     %link{:href => "http://yui.yahooapis.com/pure/0.5.0/pure-min.css", :rel => "stylesheet", :type => "text/css"}
     %link{:href => "http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css", :rel => "stylesheet"}
-    %link{:href => "css/app.css", :rel => "stylesheet", :type => "text/css"}
-    %link{:href => "css/record.css", :rel => "stylesheet", :type => "text/css"}
+    %link{:href => "/css/app.css", :rel => "stylesheet", :type => "text/css"}
+    %link{:href => "/css/record.css", :rel => "stylesheet", :type => "text/css"}
   %body
     =haml :header
 
@@ -17,7 +17,7 @@
 
       %p.bread-crumbs
         &gt;
-        %a.bread-crumb{:href => "/tongue_twisters"} 早口言葉
+        %a.bread-crumb{:href => "/record/titles"} 早口言葉
 
       %div.record
         / google tts
@@ -25,11 +25,11 @@
           %a.tts-play-button.pure-button.get-started-button{:onclick => "playTTS('#{@tts_uri.to_s}');"}
             %i.fa.fa-play &nbsp;&nbsp;Google先生のお手本
 
-        / tongue twister and American IPA
-        %p.tongue-twister
-          - for i in 0..@tongue_twister.length
+        / record title and American IPA
+        %p.record-title
+          - for i in 0..@record_title.length
             %ruby
-              %rb #{@tongue_twister[i]}
+              %rb #{@record_title[i]}
               %rt.ruby-char #{@ipa[i]}
 
         / buttons
