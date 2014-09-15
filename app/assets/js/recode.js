@@ -5,6 +5,7 @@ var NOW_IS_FREE = 0;
 var NOW_IS_RECORDING = 1;
 var NOW_IS_CONVERTING_MP3 = 2;
 var recordingStatus = NOW_IS_FREE;
+var NOW_IS_POSTING = 1;
 
 window.onload = function () {
     $("#post_button").addClass("disable");
@@ -59,8 +60,13 @@ var toggleRecording = function() {
 
 // post MP3
 var postMp3 = function() {
+    var postButton = $("#post_button");
     // can post or not
-    if ($("#post_button").hasClass("disable")) {
+    if (postButton.hasClass("disable")) {
+        return;
+    }
+    // post now
+    if (postButton.hasClass("record-indicator-button")) {
         return;
     }
 
@@ -86,6 +92,15 @@ var postMp3 = function() {
         return new Blob([ia], {type:mimeString});
     }
     var file = dataURItoBlob($("#recorded_voice_player").attr("src"));
+    if (file.size > 1024 * 1024) { // over 1MB
+        alert("録音した音声ファイルのサイズが1MBを超えました。録音時間を1分以内に抑えてください");
+        return;
+    }
+
+    // design
+    postButton.removeClass("post-button").addClass("record-indicator-button");
+    $("#post_icon").removeClass("fa-check").addClass("fa-circle-o-notch").addClass("fa-spin").addClass("fa-microphone");
+    $("#post_icon").text("");
 
     // post
     var request = new FormData();
@@ -103,7 +118,12 @@ var postMp3 = function() {
      },
        error: function(xhr, exception) {
         var json = $.parseJSON(data);
-        window.location = json["redirect_url"];
+
+        postButton.removeClass("record-indicator-button").addClass("post-button");
+        $("#post_icon").removeClass("fa-circle-o-notch").removeClass("fa-spin").removeClass("fa-microphone").addClass("fa-check");
+        $("#post_icon").text(" 投稿");
+
+        alert("投稿に失敗しました");
        }
     });
 

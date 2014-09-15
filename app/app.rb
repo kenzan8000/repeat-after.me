@@ -92,7 +92,6 @@ post "/record" do
     response['redirect_url'] = '/record_detail'
   else
     response['application_code'] = '500'
-    response['redirect_url'] = '/record_failed'
     return response.to_json
   end
 
@@ -101,10 +100,6 @@ end
 
 get "/record_detail" do
   haml :record_detail
-end
-
-get "/record_failed" do
-  haml :record_failed
 end
 
 get '/login' do
