@@ -57,6 +57,58 @@ var toggleRecording = function() {
     }
 };
 
+// post MP3
+var postMp3 = function() {
+    // can post or not
+    if ($("#post_button").hasClass("disable")) {
+        return;
+    }
+
+    function dataURItoBlob(dataURI) {
+        // convert base64/URLEncoded data component to raw binary data held in a string
+        var byteString;
+        if (dataURI.split(',')[0].indexOf('base64') >= 0) {
+            byteString = atob(dataURI.split(',')[1]);
+        }
+        else {
+            byteString = unescape(dataURI.split(',')[1]);
+        }
+
+        // separate out the mime component
+        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+
+        // write the bytes of the string to a typed array
+        var ia = new Uint8Array(byteString.length);
+        for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+
+        return new Blob([ia], {type:mimeString});
+    }
+    var file = dataURItoBlob($("#recorded_voice_player").attr("src"));
+
+    // post
+    var request = new FormData();
+    request.append("file", file);
+    //request.append("file", $("#recorded_voice_player").attr("src"));
+    alert(location.href);
+    $.ajax({
+         url: location.href,
+        type: "POST",
+        data: request,
+       cache: false,
+ processData: false,
+ contentType: false,
+     success: function(data, status, xhr) {
+         alert('success');
+     },
+       error: function(xhr, exception) {
+          alert('error' + exception);
+       }
+    });
+
+};
+
 // play Text to Speech
 var playTTS = function(url) {
     $("#tts_player").remove();
@@ -145,7 +197,8 @@ var playTTS = function(url) {
                     if (e.data.cmd == 'data') {
                         //Done converting to Mp3
                         var player = $("#recorded_voice_player");
-                        player.attr("src", 'data:audio/mp3;base64,'+encode64(e.data.buf));
+                        src = 'data:audio/mp3;base64,'+encode64(e.data.buf);
+                        player.attr("src", src);
                         $("#post_button").removeClass("disable");
                         $("#record_button").removeClass("record-stop-button").removeClass("record-indicator-button").addClass("record-start-button");
                         $("#record_icon").removeClass("fa-circle-o-notch").removeClass("fa-spin").removeClass("fa-stop").addClass("fa-microphone");

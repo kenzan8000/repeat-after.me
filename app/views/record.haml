@@ -39,13 +39,14 @@
           &nbsp;
           %audio.recorded-voice-player#recorded_voice_player{:autoplay => "false", :controls => ""}
           &nbsp;
-          %a.pure-button.record-button.post-button#post_button{}
+          %a.pure-button.record-button.post-button#post_button{:onclick => "postMp3();"}
             %i.fa.fa-check &nbsp;投稿
 
         %form(method="post" enctype='multipart/form-data')
           %input(type='file' name='file')
-          %br
           %input(type='submit' value='upload')
+
+          /%input#post_mp3(type='hidden' name='file' value='')
 
       = haml :ad
 

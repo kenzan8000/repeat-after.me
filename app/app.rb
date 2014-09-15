@@ -9,7 +9,6 @@ require './models/util.rb'
 
 # constant
 TTS_API = 'http://translate.google.com/translate_tts' # google tts api
-#TTS_API = 'http://tts-api.com/tts.mp3' # tts api
 
 
 configure :development do
@@ -58,24 +57,22 @@ get '/my_page' do
   end
 end
 
-get '/tongue_twisters*' do
+get '/tongue_twisters' do
   @tongue_twisters = TongueTwister.all
   haml :tongue_twisters
 end
 
-get '/record*' do
-  if session[:uid]
-    # paginator
-    tongue_twister_id = params[:tongue_twister_id]
+get '/record' do
+  # paginator
+  tongue_twister_id = params[:tongue_twister_id]
 
-    # tongue_twister
+  if session[:uid] && tongue_twister_id
     tongue_twister = TongueTwister.find(tongue_twister_id)
+    # tongue_twister
     @tongue_twister = tongue_twister.text.split(' ')
     # tts api
     @tts_uri = URI(TTS_API)
     @tts_uri.query = URI.encode_www_form({'ie' => 'UTF-8', 'tl' => 'en-us', 'q' => tongue_twister.text})
-    #@tts_uri.query = URI.encode_www_form({'q' => tongue_twister.text, '&return_url' => '1'})
-
     # American IPA
     @ipa = AmericanIPA.text_to_ipa(tongue_twister.text)
 
@@ -85,14 +82,17 @@ get '/record*' do
   end
 end
 
-post "/record*" do
+post "/record" do
   f = params[:file]
   if f
-    save_path = "./public/post/mp4.mp3"
-    File.open(save_path, 'wb') do |f|
+    mp3_path = './public/post/mp4.mp3'
+    mp4_path = './public/post/output.mp4'
+    jpg_path = './public/post/mp4.jpg'
+    File.open(mp3_path, 'wb') do |f|
       p params[:file][:tempfile]
       f.write params[:file][:tempfile].read
-      system("ffmpeg -i './public/post/mp4.jpg' -i '#{save_path}' -ar 44100 -vcodec mpeg4 -y './public/post/output.mp4'")
+
+      system("ffmpeg -i #{jpg_path} -i '#{mp3_path}' -ar 44100 -vcodec mpeg4 -loglevel 'quiet' -y #{mp4_path}")
     end
   else
   end
