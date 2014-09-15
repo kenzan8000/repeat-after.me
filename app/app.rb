@@ -83,19 +83,28 @@ get '/record' do
 end
 
 post "/record" do
-  f = params[:file]
-  if f
-    mp3_path = './public/post/mp4.mp3'
-    mp4_path = './public/post/output.mp4'
-    jpg_path = './public/post/mp4.jpg'
-    File.open(mp3_path, 'wb') do |f|
-      p params[:file][:tempfile]
-      f.write params[:file][:tempfile].read
+  # convert mp3 to mp4
+  mp4_path = MP4Converter.mp4_path(params)
 
-      system("ffmpeg -i #{jpg_path} -i '#{mp3_path}' -ar 44100 -vcodec mpeg4 -loglevel 'quiet' -y #{mp4_path}")
-    end
+  response = {}
+  if mp4_path
+    response['application_code'] = '200'
+    response['redirect_url'] = '/record_detail'
   else
+    response['application_code'] = '500'
+    response['redirect_url'] = '/record_failed'
+    return response.to_json
   end
+
+  response.to_json
+end
+
+get "/record_detail" do
+  haml :record_detail
+end
+
+get "/record_failed" do
+  haml :record_failed
 end
 
 get '/login' do

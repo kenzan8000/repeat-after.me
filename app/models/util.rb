@@ -56,3 +56,27 @@ module AmazonAssociates
     ADS[rand(ADS.length)]
   end
 end
+
+
+module MP4Converter
+
+  def self.mp4_path(params)
+    file = params[:file]
+    path = nil
+    if file
+      mp3_path = './public/post/mp4.mp3'
+      mp4_path = './public/post/output.mp4'
+      jpg_path = './public/post/mp4.jpg'
+
+      File.open(mp3_path, 'wb') do |file|
+        p params[:file][:tempfile]
+        file.write params[:file][:tempfile].read
+
+        system("ffmpeg -i #{jpg_path} -i '#{mp3_path}' -ar 44100 -vcodec mpeg4 -loglevel 'quiet' -y #{mp4_path}")
+        path = mp4_path
+      end
+    end
+
+    path
+  end
+end

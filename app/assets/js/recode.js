@@ -90,8 +90,6 @@ var postMp3 = function() {
     // post
     var request = new FormData();
     request.append("file", file);
-    //request.append("file", $("#recorded_voice_player").attr("src"));
-    alert(location.href);
     $.ajax({
          url: location.href,
         type: "POST",
@@ -100,10 +98,12 @@ var postMp3 = function() {
  processData: false,
  contentType: false,
      success: function(data, status, xhr) {
-         alert('success');
+        var json = $.parseJSON(data);
+        window.location = json["redirect_url"];
      },
        error: function(xhr, exception) {
-          alert('error' + exception);
+        var json = $.parseJSON(data);
+        window.location = json["redirect_url"];
        }
     });
 
