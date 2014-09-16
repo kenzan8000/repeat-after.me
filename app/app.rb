@@ -94,11 +94,7 @@ get '/tutorial' do
 end
 
 get '/login' do
-  if session[:uid]
-    redirect '/auth/facebook'
-  else
-    haml :login
-  end
+  redirect '/auth/facebook'
 end
 
 get '/logout' do
