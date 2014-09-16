@@ -15,13 +15,15 @@
 
     %div.content
 
-      %p.bread-crumbs
-        &gt;
+      %div.bread-crumbs
+        &gt;&nbsp;
         %a.bread-crumb{:href => "/record/titles"} 早口言葉
+        &nbsp;&gt;&nbsp;
+        %p.caption 録音してみよう
 
       %div.record
         / google tts
-        %div.tts_wrapper
+        %div.tts_wrapper.bread-crumb
           %a.tts-play-button.pure-button.get-started-button{:onclick => "playTTS('#{@tts_uri.to_s}');"}
             %i.fa.fa-play &nbsp;&nbsp;Google先生のお手本
 
