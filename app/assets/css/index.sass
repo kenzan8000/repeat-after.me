@@ -5,11 +5,21 @@
 
 
 .splash
+  position: relative
   width: 100%
   height: auto
   top: 0
   left: 0
 
+.splash-button
+  position: absolute
+  text-align: center
+  left: 35%
+  width: 30%
+  bottom: 5%
+
+.readily-button
+  padding: 2em 0 2em 0
 
 .get-started-button
   color: white
@@ -17,6 +27,13 @@
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2)
   background: #3498db
   font-size: 240%
+
+@media (max-width: 639px)
+  .get-started-button
+    font-size: 120%
+@media (min-width: 640px)
+  .get-started-button
+    font-size: 240%
 
 
 @media (max-width: 639px)

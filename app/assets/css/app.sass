@@ -17,6 +17,11 @@ body
   -khtml-opacity: 0.25
   filter: alpha(opacity=40)
 
+.logo
+  width: auto
+  height: 58px
+  vertical-align: middle
+
 
 // header
 .header-wrapper
@@ -28,12 +33,12 @@ body
   margin: 0 auto
   padding: $header-footer-padding
   text-align: center
-  .header-sub-title
-    font-size: 70%
-    color: #999
   &.pure-menu-open
     background: white
+  .pure-menu
+    padding: 5px 0
   .pure-menu-heading
+    padding: 5px 0
     color: #333
     font-weight: 400
     font-size: 120%
@@ -47,8 +52,15 @@ body
       border: none
       color: #2980b9
 
-.pure-menu.pure-menu-open
-  border-bottom: none
+.header-logo
+  width: auto
+  height: 29px
+  vertical-align: middle
+
+.header-sub-title
+  font-size: 70%
+  color: #999
+  vertical-align: middle
 
 @media (min-width: $content-width)
   .header
@@ -58,11 +70,16 @@ body
 
 
 // footer
+.footer-wrapper
+  background: #bdc3c7
+  width: 100%
+  text-align: right
+
 .footer
   padding: $header-footer-padding
-  text-align: right
+  margin: 0 auto
+  width: 100%
   color: #888
-  background: #bdc3c7
 
 
 // content
