@@ -8,6 +8,7 @@ $content-padding: 2em
 body
   color: #7f8c8d
   font-size: 16px
+
 .is-center
   text-align: center
 
@@ -113,17 +114,35 @@ body
   vertical-align: middle
 
 
+// ad
 .ad-wrapper
   padding-top: $content-padding
   text-align: left
+  a:link
+    color: #2980b9
+    text-decoration: none
+  a:visited
+    color: #2980b9
+    text-decoration: none
+  a:hover
+    color: #3498db
+    text-decoration: none
+  a:active
+    color: #3498db
+    text-decoration: none
 
 .ad
   display: inline-block
   width: 21%
 
-.ad-description
+.ad-description-wrapper
   display: inline-block
   width: 79%
   height: 250px
   vertical-align: top
   background: white
+  overflow: scroll
+
+.ad-description
+  margin: 1em 1em
+  word-break: break-all
