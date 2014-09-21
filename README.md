@@ -1,10 +1,12 @@
 # repeat after me
 
-Share tongue-twister you pronounced.
+share recorded voice for learning language  
 
-Sample. Now I'm making.
 ![screenshot](https://raw2.github.com/kenzan8000/repeat-after.me/master/resources/screenshot/screenshot.jpg "screenshot")
 
+1. record your voice
+2. share the record
+3. get the record review
 
 ## hosts
 ```shell

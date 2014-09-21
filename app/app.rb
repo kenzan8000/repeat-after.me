@@ -3,6 +3,7 @@ Bundler.require
 require_relative 'models/init'
 # activerecord
 require './models/record_title.rb'
+require './models/user.rb'
 # the others
 require './models/util.rb'
 
@@ -105,10 +106,20 @@ end
 
 # omniauth
 get '/auth/:provider/callback' do
+  # get session
   info = request.env['omniauth.auth']
   session[:uid] = info['uid']
   session[:user_name] = info['info']['name']
   session[:image]= info['info']['image']
+
+  # register user table
+  user = User.where(user_id: session[:uid]).first
+  user = User.new if user == nil
+  user.user_id = session[:uid]
+  user.name = session[:user_name]
+  user.profile_image_url = session[:image]
+  user.save
+
   redirect '/record/titles'
 end
 
