@@ -42,11 +42,17 @@ get '/record/titles' do
 end
 
 get '/record/post' do
-  # paginator
   record_title_id = params[:record_title_id]
 
-  if session[:uid] && record_title_id
+  if session[:uid] == nil
+    redirect '/'
+  elsif record_title_id
     record_title = RecordTitle.find(record_title_id)
+    if record_title == nil
+      redirect '/'
+      return
+    end
+
     # record_title
     @record_title = record_title.text.split(' ')
     # tts api
@@ -63,21 +69,30 @@ end
 
 post "/record/post" do
   response = {}
+
   # 401
   if session[:uid] == nil
     response['application_code'] = '401'
     return response.to_json
   end
 
+  response['application_code'] = '500'
+
   # convert mp3 to mp4
   mp4_path = MP4Converter.mp4_path(params)
-  if mp4_path
-    response['application_code'] = '200'
-    response['redirect_url'] = '/record/detail'
-  else
-    response['application_code'] = '500'
+  if mp4_path == nil
     return response.to_json
   end
+
+  # publish to facebook timeline
+  title = "REPEAT AFTER ME"
+  message = "\n#{request.url}"
+  publish_response = VideoUploader.post(session[:token], mp4_path, title, message)
+  if publish_response['id'] == nil
+    return response.to_json
+  end
+  response['application_code'] = '200'
+  response['redirect_url'] = "/record/detail?id=#{publish_response['id']}"
 
   response.to_json
 end
@@ -110,7 +125,8 @@ get '/auth/:provider/callback' do
   info = request.env['omniauth.auth']
   session[:uid] = info['uid']
   session[:user_name] = info['info']['name']
-  session[:image]= info['info']['image']
+  session[:image] = info['info']['image']
+  session[:token] = info['credentials']['token']
 
   # register user table
   user = User.where(user_id: session[:uid]).first
@@ -118,6 +134,7 @@ get '/auth/:provider/callback' do
   user.user_id = session[:uid]
   user.name = session[:user_name]
   user.profile_image_url = session[:image]
+  user.login_count = (user.login_count) ? user.login_count+1 : 0
   user.save
 
   redirect '/record/titles'

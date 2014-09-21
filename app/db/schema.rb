@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20140921031320) do
     t.string   "user_id"
     t.string   "name"
     t.string   "profile_image_url"
+    t.integer  "login_count"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

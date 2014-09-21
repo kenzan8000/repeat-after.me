@@ -80,3 +80,11 @@ module MP4Converter
     path
   end
 end
+
+
+module VideoUploader
+  def self.post(token, mp4_path, title, message)
+    graph = Koala::Facebook::API.new(token)
+    graph.put_video(mp4_path, {:title => title, :message => message})
+  end
+end
