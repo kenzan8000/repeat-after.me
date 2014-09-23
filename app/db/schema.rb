@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140921031320) do
+ActiveRecord::Schema.define(version: 20140922052953) do
 
   create_table "record_titles", force: true do |t|
     t.string   "text"
@@ -19,8 +19,16 @@ ActiveRecord::Schema.define(version: 20140921031320) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "records", force: true do |t|
     t.string   "user_id"
+    t.string   "record_title_id"
+    t.string   "facebook_post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "facebook_user_id"
     t.string   "name"
     t.string   "profile_image_url"
     t.integer  "login_count"

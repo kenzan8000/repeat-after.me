@@ -3,6 +3,7 @@ Bundler.require
 require_relative 'models/init'
 # activerecord
 require './models/record_title.rb'
+require './models/record.rb'
 require './models/user.rb'
 # the others
 require './models/util.rb'
@@ -86,18 +87,32 @@ post "/record/post" do
 
   # publish to facebook timeline
   title = "REPEAT AFTER ME"
-  message = "\n#{request.url}"
+  message = "#{request.url}"
   publish_response = VideoUploader.post(session[:token], mp4_path, title, message)
   if publish_response['id'] == nil
     return response.to_json
   end
+
+  # register record table
+  user = User.find_by(facebook_user_id:session[:uid])
+  puts user
+  if user == nil
+    return response.to_json
+  end
+  record = Record.new
+  record.user_id = user.id
+  record.record_title_id = params[:record_title_id]
+  record.facebook_post_id = publish_response['id']
+  record.save
+
   response['application_code'] = '200'
-  response['redirect_url'] = "/record/detail?id=#{publish_response['id']}"
+  response['redirect_url'] = "/record/detail/#{record.id}"
 
   response.to_json
 end
 
-get "/record/detail" do
+get "/record/detail/:id" do
+  #params[:id]
   haml :record_detail
 end
 
@@ -129,9 +144,9 @@ get '/auth/:provider/callback' do
   session[:token] = info['credentials']['token']
 
   # register user table
-  user = User.where(user_id: session[:uid]).first
+  user = User.where(:facebook_user_id => session[:uid]).first
   user = User.new if user == nil
-  user.user_id = session[:uid]
+  user.facebook_user_id = session[:uid]
   user.name = session[:user_name]
   user.profile_image_url = session[:image]
   user.login_count = (user.login_count) ? user.login_count+1 : 0
