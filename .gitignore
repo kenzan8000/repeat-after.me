@@ -1,12 +1,30 @@
 .sass-cache/
-app/public/js/*
-app/public/css/*
-app/public/post/*.mp3
-app/public/post/*.mp4
-app/config/auth.yml
-app/config/database.yml
-app/config/flickr.yml
-test/js/
+server/app/public/js/*
+server/app/public/css/*
+server/app/public/post/*.mp3
+server/app/public/post/*.mp4
+server/app/config/auth.yml
+server/app/config/database.yml
+server/app/config/flickr.yml
+server/test/js/
+
+
+build/*
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+profile
+*.moved-aside
+*~.nib
+*.ipa
+*.app
+ios/Pods/*
+
 
 ### /Users/naoya/.gitignore-boilerplates/ruby.gitignore
 
@@ -67,7 +85,8 @@ node_modules
 .svn
 DerivedData
 *.vimprojects
-.DS_Store
 *.swp
+*.swo
 Thumbs.db
 .gitconfig
+
