@@ -10,8 +10,10 @@
 		E61A4DF019D103F30079092C /* repeat_after_meTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61A4DEF19D103F30079092C /* repeat_after_meTests.swift */; };
 		E61A4E0219D1056D0079092C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61A4DFA19D1056D0079092C /* AppDelegate.swift */; };
 		E61A4E0319D1056D0079092C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E61A4DFB19D1056D0079092C /* LaunchScreen.xib */; };
-		E61A4E0419D1056D0079092C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E61A4DFC19D1056D0079092C /* Main.storyboard */; };
-		E61A4E0519D1056D0079092C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61A4DFD19D1056D0079092C /* ViewController.swift */; };
+		E61A4E0419D1056D0079092C /* RAMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E61A4DFC19D1056D0079092C /* RAMain.storyboard */; };
+		E658BB1B19D131ED007C09EF /* RATabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E658BB1A19D131ED007C09EF /* RATabBarController.swift */; };
+		E658BB1E19D1371B007C09EF /* RARecording.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E658BB1D19D1371B007C09EF /* RARecording.storyboard */; };
+		E658BB2019D13A29007C09EF /* RARecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E658BB1F19D13A29007C09EF /* RARecordingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,8 +32,10 @@
 		E61A4DEF19D103F30079092C /* repeat_after_meTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = repeat_after_meTests.swift; sourceTree = "<group>"; };
 		E61A4DFA19D1056D0079092C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E61A4DFB19D1056D0079092C /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
-		E61A4DFC19D1056D0079092C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		E61A4DFD19D1056D0079092C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E61A4DFC19D1056D0079092C /* RAMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RAMain.storyboard; sourceTree = "<group>"; };
+		E658BB1A19D131ED007C09EF /* RATabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RATabBarController.swift; sourceTree = "<group>"; };
+		E658BB1D19D1371B007C09EF /* RARecording.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RARecording.storyboard; sourceTree = "<group>"; };
+		E658BB1F19D13A29007C09EF /* RARecordingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RARecordingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,9 +95,10 @@
 			isa = PBXGroup;
 			children = (
 				E61A4DFA19D1056D0079092C /* AppDelegate.swift */,
-				E61A4DFD19D1056D0079092C /* ViewController.swift */,
+				E658BB1A19D131ED007C09EF /* RATabBarController.swift */,
+				E61A4DFC19D1056D0079092C /* RAMain.storyboard */,
+				E658BB1C19D1371B007C09EF /* Recording */,
 				E61A4DFB19D1056D0079092C /* LaunchScreen.xib */,
-				E61A4DFC19D1056D0079092C /* Main.storyboard */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -119,6 +124,15 @@
 			children = (
 			);
 			path = Plists;
+			sourceTree = "<group>";
+		};
+		E658BB1C19D1371B007C09EF /* Recording */ = {
+			isa = PBXGroup;
+			children = (
+				E658BB1F19D13A29007C09EF /* RARecordingViewController.swift */,
+				E658BB1D19D1371B007C09EF /* RARecording.storyboard */,
+			);
+			path = Recording;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,7 +216,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E61A4E0319D1056D0079092C /* LaunchScreen.xib in Resources */,
-				E61A4E0419D1056D0079092C /* Main.storyboard in Resources */,
+				E61A4E0419D1056D0079092C /* RAMain.storyboard in Resources */,
+				E658BB1E19D1371B007C09EF /* RARecording.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,8 +235,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E61A4E0519D1056D0079092C /* ViewController.swift in Sources */,
+				E658BB1B19D131ED007C09EF /* RATabBarController.swift in Sources */,
 				E61A4E0219D1056D0079092C /* AppDelegate.swift in Sources */,
+				E658BB2019D13A29007C09EF /* RARecordingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
