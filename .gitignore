@@ -24,6 +24,7 @@ profile
 *.ipa
 *.app
 ios/Pods/*
+xcuserdata
 
 
 ### /Users/naoya/.gitignore-boilerplates/ruby.gitignore

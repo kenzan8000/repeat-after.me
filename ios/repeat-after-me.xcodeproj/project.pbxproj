@@ -11,9 +11,11 @@
 		E61A4E0219D1056D0079092C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61A4DFA19D1056D0079092C /* AppDelegate.swift */; };
 		E61A4E0319D1056D0079092C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E61A4DFB19D1056D0079092C /* LaunchScreen.xib */; };
 		E61A4E0419D1056D0079092C /* RAMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E61A4DFC19D1056D0079092C /* RAMain.storyboard */; };
+		E6525DBE19D2668000904DBA /* RARecordingTitlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6525DBD19D2668000904DBA /* RARecordingTitlesViewController.swift */; };
 		E658BB1B19D131ED007C09EF /* RATabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E658BB1A19D131ED007C09EF /* RATabBarController.swift */; };
-		E658BB1E19D1371B007C09EF /* RARecording.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E658BB1D19D1371B007C09EF /* RARecording.storyboard */; };
 		E658BB2019D13A29007C09EF /* RARecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E658BB1F19D13A29007C09EF /* RARecordingViewController.swift */; };
+		E6B5125E19D6945F0026FF44 /* RARecordingTitlesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6B5125D19D6945F0026FF44 /* RARecordingTitlesTableViewCell.xib */; };
+		E6B5126019D694ED0026FF44 /* RARecordingTitlesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B5125F19D694ED0026FF44 /* RARecordingTitlesTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,9 +35,11 @@
 		E61A4DFA19D1056D0079092C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E61A4DFB19D1056D0079092C /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		E61A4DFC19D1056D0079092C /* RAMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RAMain.storyboard; sourceTree = "<group>"; };
+		E6525DBD19D2668000904DBA /* RARecordingTitlesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RARecordingTitlesViewController.swift; sourceTree = "<group>"; };
 		E658BB1A19D131ED007C09EF /* RATabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RATabBarController.swift; sourceTree = "<group>"; };
-		E658BB1D19D1371B007C09EF /* RARecording.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RARecording.storyboard; sourceTree = "<group>"; };
 		E658BB1F19D13A29007C09EF /* RARecordingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RARecordingViewController.swift; sourceTree = "<group>"; };
+		E6B5125D19D6945F0026FF44 /* RARecordingTitlesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RARecordingTitlesTableViewCell.xib; sourceTree = "<group>"; };
+		E6B5125F19D694ED0026FF44 /* RARecordingTitlesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RARecordingTitlesTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,8 +133,10 @@
 		E658BB1C19D1371B007C09EF /* Recording */ = {
 			isa = PBXGroup;
 			children = (
+				E6525DBD19D2668000904DBA /* RARecordingTitlesViewController.swift */,
+				E6B5125F19D694ED0026FF44 /* RARecordingTitlesTableViewCell.swift */,
+				E6B5125D19D6945F0026FF44 /* RARecordingTitlesTableViewCell.xib */,
 				E658BB1F19D13A29007C09EF /* RARecordingViewController.swift */,
-				E658BB1D19D1371B007C09EF /* RARecording.storyboard */,
 			);
 			path = Recording;
 			sourceTree = "<group>";
@@ -216,8 +222,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E61A4E0319D1056D0079092C /* LaunchScreen.xib in Resources */,
+				E6B5125E19D6945F0026FF44 /* RARecordingTitlesTableViewCell.xib in Resources */,
 				E61A4E0419D1056D0079092C /* RAMain.storyboard in Resources */,
-				E658BB1E19D1371B007C09EF /* RARecording.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,8 +241,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6525DBE19D2668000904DBA /* RARecordingTitlesViewController.swift in Sources */,
 				E658BB1B19D131ED007C09EF /* RATabBarController.swift in Sources */,
 				E61A4E0219D1056D0079092C /* AppDelegate.swift in Sources */,
+				E6B5126019D694ED0026FF44 /* RARecordingTitlesTableViewCell.swift in Sources */,
 				E658BB2019D13A29007C09EF /* RARecordingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

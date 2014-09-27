@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="IzO-SY-D9v">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="IzO-SY-D9v">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -34,10 +34,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="hRp-98-gWC" kind="relationship" relationship="rootViewController" id="zNR-h4-mjX"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SYt-Xd-muY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="134" y="-70"/>
+            <point key="canvasLocation" x="61" y="-70"/>
         </scene>
         <!--Item-->
         <scene sceneID="xr8-cB-TMg">
@@ -51,7 +54,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SvB-dg-2mh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-378" y="889"/>
+            <point key="canvasLocation" x="-378" y="883"/>
         </scene>
         <!--Item-->
         <scene sceneID="CzE-y6-0TW">
@@ -65,7 +68,52 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CLV-Ia-Eo8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="134" y="567"/>
+            <point key="canvasLocation" x="61" y="568"/>
+        </scene>
+        <!--Recording View Controller-->
+        <scene sceneID="U9P-iR-0Tr">
+            <objects>
+                <viewController id="BCa-bw-Sst" customClass="RARecordingViewController" customModule="repeat_after_me" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fib-mS-WrL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bqG-Su-CUK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tdv-V8-SH5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="824" y="-70"/>
+        </scene>
+        <!--Recording Titles View Controller-->
+        <scene sceneID="cjd-Sl-XPD">
+            <objects>
+                <viewController id="hRp-98-gWC" customClass="RARecordingTitlesViewController" customModule="repeat_after_me" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="P43-3a-FfI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="I2F-hL-cji">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="hRp-98-gWC" id="foi-8k-R2d"/>
+                                    <outlet property="delegate" destination="hRp-98-gWC" id="DMq-5L-bsj"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ldT-es-B5U"/>
+                    <connections>
+                        <outlet property="tableView" destination="I2F-hL-cji" id="l46-P2-ezQ"/>
+                        <segue destination="BCa-bw-Sst" kind="push" identifier="pushRecordingViewController" id="PWj-kw-oq9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eTv-LP-KN4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="440" y="-70"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
