@@ -8,7 +8,41 @@
     %script{:type => "text/javascript", :src => "/js/app.js"}
     %link{:href => "http://yui.yahooapis.com/pure/0.5.0/pure-min.css", :rel => "stylesheet", :type => "text/css"}
     %link{:href => "/css/app.css", :rel => "stylesheet", :type => "text/css"}
+    %link{:href => "/css/record.css", :rel => "stylesheet", :type => "text/css"}
   %body
+    %div#fb-root
+    %script (function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.0";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));
+
     =haml :header
+
+    %div.content
+      %div.bread-crumbs
+        &gt;&nbsp;
+        %a.bread-crumb{:href => "/record/titles"} 早口言葉
+        &nbsp;&gt;&nbsp;
+        %p.caption 録音してみよう
+
+      %div.record
+        / record title and American IPA
+        %p.record-title.record-title-detail
+          - for i in 0..@record_title.length
+            %ruby
+              %rb #{@record_title[i]}
+              %rt.ruby-char #{@ipa[i]}
+
+        / like button
+        %div.fb-like{"data-href" => "#{request.url}", "data-layout" => "button_count", "data-action" => "like", "data-show-faces" => "false", "data-share" => "false"}
+
+        / user
+        %div.record-user
+          %a.user-icon{:href => "/user/#{@user.id}"}
+            %img{:src => "#{@user.profile_image_url}"}
+          &nbsp;
+          &nbsp;
+          %div.user-name
+            #{@user.name}
+          &nbsp;
+          %div.post-date
+            #{@post_date}
 
     =haml :footer

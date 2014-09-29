@@ -112,7 +112,28 @@ post "/record/post" do
 end
 
 get "/record/detail/:id" do
-  #params[:id]
+  record_id = params[:id]
+  record = Record.find(record_id)
+  #record.facebook_post_id
+
+  # user
+  @user = User.find(record.user_id)
+  if @user == nil
+    redirect '/'
+    return
+  end
+  # record_title
+  record_title = RecordTitle.find(record.record_title_id)
+  if record_title == nil
+    redirect '/'
+    return
+  end
+  @record_title = record_title.text.split(' ')
+  # American IPA
+  @ipa = AmericanIPA.text_to_ipa(record_title.text)
+  # post_date
+  @post_date = record.updated_at.strftime("%Y %1m/%1d %1H:%1M")
+
   haml :record_detail
 end
 
