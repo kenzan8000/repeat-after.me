@@ -36,15 +36,19 @@
 
           / user
           %div.record-user
-            %a.user-icon{:href => "/user/#{@user.id}"}
-              %img{:src => "#{@user.profile_image_url}"}
+            %a.user-icon{:href => "/user/#{@post_user.id}"}
+              %img{:src => "#{@post_user.profile_image_url}"}
             &nbsp;
             &nbsp;
             %div.user-name
-              #{@user.name}
+              #{@post_user.name}
             &nbsp;
             %div.post-date
               #{@post_date}
+
+        / comment
+        %div.comment-wrapper
+          = haml :record_detail_comment
 
       = haml :ad
 

@@ -1,0 +1,20 @@
+%div.comment
+  %div.user-icon{:href => "/user/#{@post_user.id}"}
+    %img{:src => "#{@post_user.profile_image_url}"}
+  &nbsp;
+  &nbsp;
+  %div.user-name
+    #{@post_user.name}
+  &nbsp;
+  %div.post-date
+    #{@post_date}
+%div.comment
+  %div.user-icon{:href => "/user/#{@post_user.id}"}
+    %img{:src => "#{@post_user.profile_image_url}"}
+  &nbsp;
+  &nbsp;
+  %div.user-name
+    #{@post_user.name}
+  &nbsp;
+  %div.post-date
+    #{@post_date}

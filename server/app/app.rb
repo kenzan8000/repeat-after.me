@@ -117,8 +117,8 @@ get "/record/detail/:id" do
   #record.facebook_post_id
 
   # user
-  @user = User.find(record.user_id)
-  if @user == nil
+  @post_user = User.find(record.user_id)
+  if @post_user == nil
     redirect '/'
     return
   end
