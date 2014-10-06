@@ -21,7 +21,8 @@ RecordTitle.delete_all
 reader = CSV.open(RECORD_TITLES_CSV, 'r', :col_sep => "\t")
 reader.each do |row|
   record_title = RecordTitle.new do |t|
-    t.text = row[0]
+    t.category = row[0]
+    t.text = row[1]
   end
   record_title.save
 end

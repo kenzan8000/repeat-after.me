@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20140922052953) do
 
   create_table "record_titles", force: true do |t|
+    t.string   "category"
     t.string   "text"
     t.datetime "created_at"
     t.datetime "updated_at"
