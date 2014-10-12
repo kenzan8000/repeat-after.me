@@ -16,14 +16,16 @@
     %div.content
       %div.bread-crumbs
         &gt;&nbsp;
-        %p.caption フレーズ
+        %a.bread-crumb{:href => "/record/titles"} フレーズ
+        &nbsp;&gt;&nbsp;
+        %p.caption #{@record_category_jp}
 
       %div.titles-wrapper
         %div.titles
           - @record_titles.each do |record_title|
-            %a{:href => "/record/post/#{record_title.id}"}
-              #{record_title.text_jp}
-            %br
+            %div.title
+              %a.title-link{:href => "/record/post/#{record_title.id}"}
+                #{record_title.text_jp}
 
       = haml :ad
 

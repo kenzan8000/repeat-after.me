@@ -51,15 +51,17 @@ end
 get '/record/titles/:category_en' do
   category_en = params[:category_en]
   if category_en == nil
-    redirect '/'
+    redirect '/record/titles'
     return
   end
 
   @record_titles = RecordTitle.where(:category_en => category_en)
   if @record_titles == nil
-    redirect '/'
+    redirect '/record/titles'
     return
   end
+
+  @record_category_jp = @record_titles.first.category_jp
 
   haml :record_titles_category
 end
