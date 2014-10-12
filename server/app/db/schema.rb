@@ -14,8 +14,10 @@
 ActiveRecord::Schema.define(version: 20140922052953) do
 
   create_table "record_titles", force: true do |t|
-    t.string   "category"
-    t.string   "text"
+    t.string   "category_en"
+    t.string   "category_jp"
+    t.string   "text_en"
+    t.string   "text_jp"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -9,13 +9,23 @@
     %ul
       -if session[:user_name]
         %li
-          %a{:href => "/user"} マイページ
+          %a{:href => "/user"}
+            %i.fa.fa-user
+            マイページ
         %li
-          %a{:href => "/record/titles"} 早口言葉
+          %a{:href => "/record/titles"}
+            %i.fa.fa-list-alt
+            フレーズ
         %li
-          %a{:href => "/logout"} サインアウト
+          %a{:href => "/logout"}
+            %i.fa.fa-sign-out
+            サインアウト
       -else
         %li
-          %a{:href => "/tutorial"} 使い方
+          %a{:href => "/tutorial"}
+            %i.fa.fa-mortar-board
+            使い方
         %li
-          %a{:href => "/login"} サインイン
+          %a{:href => "/login"}
+            %i.fa.fa-sign-in
+            サインイン

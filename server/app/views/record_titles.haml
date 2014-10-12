@@ -7,13 +7,24 @@
     %script{:type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"}
     %script{:type => "text/javascript", :src => "/js/app.js"}
     %link{:href => "http://yui.yahooapis.com/pure/0.5.0/pure-min.css", :rel => "stylesheet", :type => "text/css"}
+    %link{:href => "http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css", :rel => "stylesheet"}
     %link{:href => "/css/app.css", :rel => "stylesheet", :type => "text/css"}
+    %link{:href => "/css/titles.css", :rel => "stylesheet", :type => "text/css"}
   %body
     =haml :header
 
     %div.content
-      - @record_titles.each do |record_title|
-        %a{:href => "/record/post?record_title_id=#{record_title.id}"}  #{record_title.id}:#{record_title.text}
-        %br
+      %div.bread-crumbs
+        &gt;&nbsp;
+        %p.caption フレーズ
+
+      %div.titles-wrapper
+        %div.titles
+          - for i in 0..@record_categories.length
+            %a{:href => "/record/titles/#{@record_categories[i]}"}
+              #{@record_categories[i]}
+            &nbsp;&nbsp;&nbsp;#{@record_counts[i]}
+
+      = haml :ad
 
     =haml :footer

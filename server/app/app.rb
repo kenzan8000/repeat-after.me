@@ -38,7 +38,12 @@ get '/' do
 end
 
 get '/record/titles' do
-  @record_titles = RecordTitle.all
+  @record_categories = RecordTitle.pluck(:category_jp).uniq
+  @record_counts = Array.new
+  @record_categories.each do |record_category|
+    @record_counts.push(RecordTitle.count(:category_jp => record_category))
+  end
+
   haml :record_titles
 end
 
@@ -55,12 +60,12 @@ get '/record/post' do
     end
 
     # record_title
-    @record_title = record_title.text.split(' ')
+    @record_title = record_title.text_en.split(' ')
     # tts api
     @tts_uri = URI(TTS_API)
-    @tts_uri.query = URI.encode_www_form({'ie' => 'UTF-8', 'tl' => 'en-us', 'q' => record_title.text})
+    @tts_uri.query = URI.encode_www_form({'ie' => 'UTF-8', 'tl' => 'en-us', 'q' => record_title.text_en})
     # American IPA
-    @ipa = AmericanIPA.text_to_ipa(record_title.text)
+    @ipa = AmericanIPA.text_to_ipa(record_title.text_en)
 
     haml :record_post
   else
@@ -128,9 +133,9 @@ get "/record/detail/:id" do
     redirect '/'
     return
   end
-  @record_title = record_title.text.split(' ')
+  @record_title = record_title.text_en.split(' ')
   # American IPA
-  @ipa = AmericanIPA.text_to_ipa(record_title.text)
+  @ipa = AmericanIPA.text_to_ipa(record_title.text_en)
   # post_date
   @post_date = record.updated_at.strftime("%Y %1m/%1d %1H:%1M")
 
@@ -179,15 +184,3 @@ end
 get '/auth/failure' do
   redirect '/'
 end
-
-
-# assets
-#configure :development do
-#  get '/js/*.js' do
-#    javascript :application
-#  end
-#
-#  get '/css/*.css' do
-#    sass :scss_file
-#  end
-#end
