@@ -38,20 +38,38 @@ get '/' do
 end
 
 get '/record/titles' do
-  @record_categories = RecordTitle.pluck(:category_jp).uniq
+  @record_categories_jp = RecordTitle.pluck(:category_jp).uniq
+  @record_categories_en = RecordTitle.pluck(:category_en).uniq
   @record_counts = Array.new
-  @record_categories.each do |record_category|
-    @record_counts.push(RecordTitle.count(:category_jp => record_category))
+  @record_categories_jp.each do |record_category_jp|
+    @record_counts.push(RecordTitle.count(:category_jp => record_category_jp))
   end
 
   haml :record_titles
 end
 
-get '/record/post' do
+get '/record/titles/:category_en' do
+  category_en = params[:category_en]
+  if category_en == nil
+    redirect '/'
+    return
+  end
+
+  @record_titles = RecordTitle.where(:category_en => category_en)
+  if @record_titles == nil
+    redirect '/'
+    return
+  end
+
+  haml :record_titles_category
+end
+
+get '/record/post/:record_title_id' do
   record_title_id = params[:record_title_id]
 
   if session[:uid] == nil
     redirect '/'
+    return
   elsif record_title_id
     record_title = RecordTitle.find(record_title_id)
     if record_title == nil
@@ -73,7 +91,7 @@ get '/record/post' do
   end
 end
 
-post "/record/post" do
+post "/record/post/:record_title_id" do
   response = {}
 
   # 401
@@ -83,6 +101,11 @@ post "/record/post" do
   end
 
   response['application_code'] = '500'
+
+  # lacking record_title_id
+  if params[:record_title_id] == nil
+    return response.to_json
+  end
 
   # convert mp3 to mp4
   mp4_path = MP4Converter.mp4_path(params)
