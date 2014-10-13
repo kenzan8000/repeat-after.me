@@ -73,19 +73,19 @@ get '/record/post/:record_title_id' do
     redirect '/'
     return
   elsif record_title_id
-    record_title = RecordTitle.find(record_title_id)
-    if record_title == nil
+    @record_title = RecordTitle.find(record_title_id)
+    if @record_title == nil
       redirect '/'
       return
     end
 
-    # record_title
-    @record_title = record_title.text_en.split(' ')
+    # record_title_en
+    @record_title_en = @record_title.text_en.split(' ')
     # tts api
     @tts_uri = URI(TTS_API)
-    @tts_uri.query = URI.encode_www_form({'ie' => 'UTF-8', 'tl' => 'en-us', 'q' => record_title.text_en})
+    @tts_uri.query = URI.encode_www_form({'ie' => 'UTF-8', 'tl' => 'en-us', 'q' => @record_title.text_en})
     # American IPA
-    @ipa = AmericanIPA.text_to_ipa(record_title.text_en)
+    @ipa = AmericanIPA.text_to_ipa(@record_title.text_en)
 
     haml :record_post
   else
