@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:charset => "utf-8"}
-    %title 録音した英語 | REPEAT AFTER ME - 声を出して練習する英語学習サイト -
+    %title #{@record_title.text_jp} | REPEAT AFTER ME - 声を出して練習する英語学習サイト -
 
     %script{:type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"}
     %script{:type => "text/javascript", :src => "/js/app.js"}
@@ -22,18 +22,21 @@
         &gt;&nbsp;
         %a.bread-crumb{:href => "/record/titles"} フレーズ
         &nbsp;&gt;&nbsp;
-        %a.bread-crumb{:href => "/record/titles"} 早口言葉
+        %a.bread-crumb{:href => "/record/titles/#{@record_title.category_en}"} #{@record_title.category_jp}
         &nbsp;&gt;&nbsp;
-        %p.caption #{@record_title.join(" ")}
+        %p.caption #{@record_title.text_jp}
 
       %div.record-wrapper
         %div.record
+          %div
           / record title and American IPA
-          %p.record-title.record-title-detail
-            - for i in 0..@record_title.length
+          %div.record-title.record-title-detail
+            - for i in 0..@record_title_en.length
               %ruby
-                %rb #{@record_title[i]}
+                %rb #{@record_title_en[i]}
                 %rt.ruby-char #{@ipa[i]}
+            %div.record-title-translation
+              #{@record_title.text_jp}
 
           / like button
           %div.fb-like{"data-href" => "#{request.url}", "data-layout" => "button_count", "data-action" => "like", "data-show-faces" => "false", "data-share" => "false"}

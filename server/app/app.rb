@@ -153,14 +153,15 @@ get "/record/detail/:id" do
     return
   end
   # record_title
-  record_title = RecordTitle.find(record.record_title_id)
-  if record_title == nil
+  @record_title = RecordTitle.find(record.record_title_id)
+  if @record_title == nil
     redirect '/'
     return
   end
-  @record_title = record_title.text_en.split(' ')
+  # record_title_en
+  @record_title_en = @record_title.text_en.split(' ')
   # American IPA
-  @ipa = AmericanIPA.text_to_ipa(record_title.text_en)
+  @ipa = AmericanIPA.text_to_ipa(@record_title.text_en)
   # post_date
   @post_date = record.updated_at.strftime("%Y %1m/%1d %1H:%1M")
 
