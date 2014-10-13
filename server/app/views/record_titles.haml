@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:charset => "utf-8"}
-    %title フレーズを探そう
+    %title フレーズを探そう | REPEAT AFTER ME - 声を出して練習する英語学習サイト -
 
     %script{:type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"}
     %script{:type => "text/javascript", :src => "/js/app.js"}
@@ -18,13 +18,12 @@
         &gt;&nbsp;
         %p.caption フレーズ
 
-      %div.titles-wrapper
-        %div.titles
-          - for i in 0..@record_categories_jp.length-1
-            %div.title
-              %a.title-link{:href => "/record/titles/#{@record_categories_en[i]}"}
-                #{@record_categories_jp[i]}
-              &nbsp;&nbsp;&nbsp;#{@record_counts[i]}フレーズ
+      %div.title-wrapper
+        - for i in 0..@record_categories_jp.length-1
+          %div.title
+            %a.title-link{:href => "/record/titles/#{@record_categories_en[i]}"}
+              #{@record_categories_jp[i]}
+            %span.title-description &nbsp;&nbsp;&nbsp;#{@record_counts[i]}フレーズ
 
       = haml :ad
 
