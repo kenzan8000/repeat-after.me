@@ -62,7 +62,7 @@ get '/record/titles/:category_en' do
     return
   end
 
-  @record_category_jp = @record_titles.first.category_jp
+  @record_category_en = @record_titles.first.category_en
 
   haml :record_titles_category
 end
