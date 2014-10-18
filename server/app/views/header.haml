@@ -4,28 +4,28 @@
     %a.pure-menu-heading{:href => "/"}
       %img.header-logo{:src => "/img/common_chameleon.png"}
       &nbsp;repeat after me
-      %span.header-sub-title &nbsp;- 声を出して練習する英語学習サイト -
+      %span.header-sub-title &nbsp;- for learning Japanese -
 
     %ul
       -if session[:user_name]
         %li
           %a{:href => "/user"}
             %i.fa.fa-user
-            マイページ
+            My Page
         %li
           %a{:href => "/record/titles"}
             %i.fa.fa-list-alt
-            フレーズ
+            Phrases
         %li
           %a{:href => "/logout"}
             %i.fa.fa-sign-out
-            サインアウト
+            Signout
       -else
         %li
           %a{:href => "/tutorial"}
             %i.fa.fa-mortar-board
-            使い方
+            How to Use
         %li
           %a{:href => "/login"}
             %i.fa.fa-sign-in
-            サインイン
+            Singin

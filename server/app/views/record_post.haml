@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:charset => "utf-8"}
-    %title 録音してみよう | REPEAT AFTER ME - 声を出して練習する英語学習サイト -
+    %title 録音してみよう | REPEAT AFTER ME - for learning Japanese -
 
     %script{:type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"}
     %script{:type => "text/javascript", :src => "/js/record_post.js"}
@@ -17,7 +17,7 @@
 
       %div.bread-crumbs
         &gt;&nbsp;
-        %a.bread-crumb{:href => "/record/titles"} フレーズ
+        %a.bread-crumb{:href => "/record/titles"} Phrases
         &nbsp;&gt;&nbsp;
         %a.bread-crumb{:href => "/record/titles/#{@record_title.category_en}"} #{@record_title.category_jp}
         &nbsp;&gt;&nbsp;
@@ -28,7 +28,7 @@
           / google tts
           %div.tts_wrapper.bread-crumb
             %a.tts-play-button.pure-button.get-started-button{:onclick => "playTTS('#{@tts_uri.to_s}');"}
-              %i.fa.fa-play &nbsp;&nbsp;Google先生のお手本
+              %i.fa.fa-play &nbsp;&nbsp;Google Text to Speech
 
           / record title and American IPA
           %div.record-title

@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:charset => "utf-8"}
-    %title #{@record_title.text_jp} | REPEAT AFTER ME - 声を出して練習する英語学習サイト -
+    %title #{@record_title.text_en} | REPEAT AFTER ME - for learning Japanese -
 
     %script{:type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"}
     %script{:type => "text/javascript", :src => "/js/app.js"}
@@ -12,7 +12,7 @@
     %link{:href => "/css/record.css", :rel => "stylesheet", :type => "text/css"}
   %body
     %div#fb-root
-    %script (function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.0";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));
+    %script (function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));
 
     =haml :header
 
@@ -20,11 +20,11 @@
 
       %div.bread-crumbs
         &gt;&nbsp;
-        %a.bread-crumb{:href => "/record/titles"} フレーズ
+        %a.bread-crumb{:href => "/record/titles"} Phrases
         &nbsp;&gt;&nbsp;
-        %a.bread-crumb{:href => "/record/titles/#{@record_title.category_en}"} #{@record_title.category_jp}
+        %a.bread-crumb{:href => "/record/titles/#{@record_title.category_en}"} #{@record_title.category_en}
         &nbsp;&gt;&nbsp;
-        %p.caption #{@record_title.text_jp}
+        %p.caption #{@record_title.text_en}
 
       %div.record-wrapper
         %div.record
@@ -36,7 +36,7 @@
                 %rb #{@record_title_en[i]}
                 %rt.ruby-char #{@ipa[i]}
             %div.record-title-translation
-              #{@record_title.text_jp}
+              #{@record_title.text_en}
 
           / like button
           %div.fb-like{"data-href" => "#{request.url}", "data-layout" => "button_count", "data-action" => "like", "data-show-faces" => "false", "data-share" => "false"}
@@ -52,10 +52,6 @@
             &nbsp;
             %div.post-date
               #{@post_date}
-
-        / comment
-        %div.comment-wrapper
-          = haml :record_detail_comment
 
       = haml :ad
 
