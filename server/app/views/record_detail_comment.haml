@@ -1,20 +1,24 @@
-%div.comment
-  %div.user-icon{:href => "/user/#{@post_user.id}"}
-    %img{:src => "#{@post_user.profile_image_url}"}
-  &nbsp;
-  &nbsp;
-  %div.user-name
-    #{@post_user.name}
-  &nbsp;
-  %div.post-date
-    #{@post_date}
-%div.comment
-  %div.user-icon{:href => "/user/#{@post_user.id}"}
-    %img{:src => "#{@post_user.profile_image_url}"}
-  &nbsp;
-  &nbsp;
-  %div.user-name
-    #{@post_user.name}
-  &nbsp;
-  %div.post-date
-    #{@post_date}
+/ comment
+- for i in 0..@comments.length-1
+  %div.comment
+    %div #{@comments[i].text}
+    %div.user-icon{:href => "/user/#{@comment_users[i].id}"}
+      %img{:src => "#{@comment_users[i].profile_image_url}"}
+    &nbsp;
+    &nbsp;
+    %div.user-name
+      #{@comment_users[i].name}
+    &nbsp;
+    %div.post-date
+      #{@comment_dates[i]}
+
+%form.pure-form
+  %label.pure-checkbox{:for => "option-one"}
+    %input#option-one{:type => "checkbox", :value => ""}/
+    Here's option one.
+  %label.pure-radio{:for => "option-two"}
+    %input#option-two{:checked => "checked", :name => "optionsRadios", :type => "radio", :value => "option1"}/
+    Here's a radio button. You can choose this one..
+  %label.pure-radio{:for => "option-three"}
+    %input#option-three{:name => "optionsRadios", :type => "radio", :value => "option2"}/
+    \..Or this one!

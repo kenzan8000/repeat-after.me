@@ -4,6 +4,7 @@ require_relative 'models/init'
 # activerecord
 require './models/record_title.rb'
 require './models/record.rb'
+require './models/record_comment.rb'
 require './models/user.rb'
 # the others
 require './models/util.rb'
@@ -125,7 +126,6 @@ post "/record/post/:record_title_id" do
 
   # register record table
   user = User.find_by(facebook_user_id:session[:uid])
-  puts user
   if user == nil
     return response.to_json
   end
@@ -164,9 +164,47 @@ get "/record/detail/:id" do
   @ipa = AmericanIPA.text_to_ipa(@record_title.text_en)
   # post_date
   @post_date = record.updated_at.strftime("%Y %1m/%1d %1H:%1M")
+  # comments
+  @comments = RecordComment.where(:record_id => record_id)
+  # comment_users, comment_dates
+  @comment_users = Array.new
+  @comment_dates = Array.new
+  @comments.each do |comment|
+      comment_user = User.find(id:comment.user_id)
+      @comment_users.push(comment_user)
+      comment_date = comment.updated_at.strftime("%Y %1m/%1d %1H:%1M")
+      @comment_dates.push(comment_date)
+  end
 
   haml :record_detail
 end
+
+post "/record/comment/:record_id" do
+  # 401
+  if session[:uid] == nil
+  end
+
+  # lacking record_id
+  if params[:record_id] == nil
+  end
+  # lacking comment
+  comment_text = params[:comment]
+  if comment_text == nil
+  end
+
+  # register comment table
+  user = User.find_by(facebook_user_id:session[:uid])
+  if user == nil
+  end
+  comment = RecordComment.new
+  comment.record_id = params[:record_id]
+  comment.user_id = user.id
+  comment.text = comment_text
+  comment.save
+
+  redirect "/record/detail/#{params[:record_id]}"
+end
+
 
 get '/user' do
   haml :user
@@ -196,7 +234,7 @@ get '/auth/:provider/callback' do
   session[:token] = info['credentials']['token']
 
   # register user table
-  user = User.where(:facebook_user_id => session[:uid]).first
+  user = User.where(facebook_user_id:session[:uid]).first
   user = User.new if user == nil
   user.facebook_user_id = session[:uid]
   user.name = session[:user_name]

@@ -40,8 +40,10 @@ end
 def migrate(env = 'development')
   if env == 'development'
     sh 'bundle exec rake db:migrate'
-    sh 'bundle exec rake db:create_migration NAME=create_record_titles'
     sh 'bundle exec rake db:create_migration NAME=create_users'
+    sh 'bundle exec rake db:create_migration NAME=create_records'
+    sh 'bundle exec rake db:create_migration NAME=create_record_titles'
+    sh 'bundle exec rake db:create_migration NAME=create_record_comments'
   elsif env == 'production'
   end
 end
