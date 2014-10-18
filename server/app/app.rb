@@ -42,8 +42,8 @@ get '/record/titles' do
   @record_categories_jp = RecordTitle.pluck(:category_jp).uniq
   @record_categories_en = RecordTitle.pluck(:category_en).uniq
   @record_counts = Array.new
-  @record_categories_jp.each do |record_category_jp|
-    @record_counts.push(RecordTitle.count(:category_jp => record_category_jp))
+  @record_categories_en.each do |record_category_en|
+    @record_counts.push(RecordTitle.count(:category_jp => record_category_en))
   end
 
   haml :record_titles

@@ -19,11 +19,11 @@
         %p.caption Phrases
 
       %div.title-wrapper
-        - for i in 0..@record_categories_jp.length-1
+        - for i in 0..@record_categories_en.length-1
           %div.title
             %a.title-link{:href => "/record/titles/#{@record_categories_en[i]}"}
-              #{@record_categories_jp[i]}
-            %span.title-description &nbsp;&nbsp;&nbsp;#{@record_counts[i]}Phrases
+              #{@record_categories_en[i]}
+            %span.title-description &nbsp;&nbsp;&nbsp;#{@record_counts[i]} Phrases
 
       = haml :ad
 
