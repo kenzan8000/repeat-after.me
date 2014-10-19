@@ -19,9 +19,9 @@
         &gt;&nbsp;
         %a.bread-crumb{:href => "/record/titles"} Phrases
         &nbsp;&gt;&nbsp;
-        %a.bread-crumb{:href => "/record/titles/#{@record_title.category_en}"} #{@record_title.category_jp}
+        %a.bread-crumb{:href => "/record/titles/#{@record_title.category_en}"} #{@record_title.category_en}
         &nbsp;&gt;&nbsp;
-        %p.caption 録音してみよう
+        %p.caption Memorization
 
       %div.record-wrapper
         %div.record
@@ -39,15 +39,13 @@
             %div.record-title-translation
               #{@record_title.text_jp}
 
-          / buttons
-          %p.record-button-wrapper
-            %a.pure-button.record-button.record-start-button#record_button{:onclick => "toggleRecording();"}
-              %i.fa.fa-microphone#record_icon &nbsp;録音
-            &nbsp;
-            %audio.recorded-voice-player#recorded_voice_player{:autoplay => "false", :controls => ""}
-            &nbsp;
-            %a.pure-button.record-button.record-post-button#post_button{:onclick => "postMp3();"}
-              %i.fa.fa-check#post_icon &nbsp;投稿
+          / previous and next word
+          %div.bread-crumbs
+            &lt;&nbsp;
+            %a.bread-crumb{:href => "/record/titles"} Phrases
+            %p.caption &nbsp;&verbar;&nbsp;
+            %a.bread-crumb{:href => "/record/titles/#{@record_title.category_en}"} #{@record_title.category_jp}
+            &nbsp;&gt;
 
       = haml :ad
 
