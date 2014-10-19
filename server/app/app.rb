@@ -80,14 +80,13 @@ get '/record/post/:record_title_id' do
       return
     end
 
-    ## record_title_en
-    #@record_title_en = @record_title.text_en.split(' ')
     # tts api
     @tts_uri = URI(TTS_API)
     @tts_uri.query = URI.encode_www_form({'ie' => 'UTF-8', 'tl' => 'en-us', 'q' => @record_title.text_en})
-    ## American IPA
-    #@ipa = AmericanIPA.text_to_ipa(@record_title.text_en)
-    @segments = MeCab::Tagger.new.parse(@record_title.text_en)
+    # segments
+    @segments = JapaneseUtil.jp_to_segments(@record_title.text_jp)
+    # romajis
+    @romajis = JapaneseUtil.kana_to_romajis(@segments)
 
     haml :record_post
   else
@@ -95,52 +94,52 @@ get '/record/post/:record_title_id' do
   end
 end
 
-post "/record/post/:record_title_id" do
-  response = {}
-
-  # 401
-  if session[:uid] == nil
-    response['application_code'] = '401'
-    return response.to_json
-  end
-
-  response['application_code'] = '500'
-
-  # lacking record_title_id
-  if params[:record_title_id] == nil
-    return response.to_json
-  end
-
-  # convert mp3 to mp4
-  mp4_path = MP4Converter.mp4_path(params)
-  if mp4_path == nil
-    return response.to_json
-  end
-
-  # publish to facebook timeline
-  title = "REPEAT AFTER ME"
-  message = "#{request.url}"
-  publish_response = VideoUploader.post(session[:token], mp4_path, title, message)
-  if publish_response['id'] == nil
-    return response.to_json
-  end
-
-  # register record table
-  user = User.find_by(facebook_user_id:session[:uid])
-  if user == nil
-    return response.to_json
-  end
-  record = Record.new
-  record.user_id = user.id
-  record.record_title_id = params[:record_title_id]
-  record.facebook_post_id = publish_response['id']
-  record.save
-
-  response['application_code'] = '200'
-  response['redirect_url'] = "/record/detail/#{record.id}"
-
-  response.to_json
-end
+#post "/record/post/:record_title_id" do
+#  response = {}
+#
+#  # 401
+#  if session[:uid] == nil
+#    response['application_code'] = '401'
+#    return response.to_json
+#  end
+#
+#  response['application_code'] = '500'
+#
+#  # lacking record_title_id
+#  if params[:record_title_id] == nil
+#    return response.to_json
+#  end
+#
+#  # convert mp3 to mp4
+#  mp4_path = MP4Converter.mp4_path(params)
+#  if mp4_path == nil
+#    return response.to_json
+#  end
+#
+#  # publish to facebook timeline
+#  title = "REPEAT AFTER ME"
+#  message = "#{request.url}"
+#  publish_response = VideoUploader.post(session[:token], mp4_path, title, message)
+#  if publish_response['id'] == nil
+#    return response.to_json
+#  end
+#
+#  # register record table
+#  user = User.find_by(facebook_user_id:session[:uid])
+#  if user == nil
+#    return response.to_json
+#  end
+#  record = Record.new
+#  record.user_id = user.id
+#  record.record_title_id = params[:record_title_id]
+#  record.facebook_post_id = publish_response['id']
+#  record.save
+#
+#  response['application_code'] = '200'
+#  response['redirect_url'] = "/record/detail/#{record.id}"
+#
+#  response.to_json
+#end
 
 get "/record/detail/:id" do
   record_id = params[:id]
@@ -212,3 +211,4 @@ end
 get '/auth/failure' do
   redirect '/'
 end
+
