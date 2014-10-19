@@ -38,8 +38,20 @@ production:
     ...
 ```
 
-## ffmpeg
-install ffmpeg to your server  
+## mecab
+```shell
+# mac
+brew install mecab mecab-ipadic
+```
+```shell
+# cent os
+curl https://mecab.googlecode.com/files/mecab-0.996.tar.gz
+tar zxf mecab-0.996.tar.gz
+cd mecab-0.996
+./configure --with-charset=utf8 --enable-utf8-only
+make
+sudo make install
+```
 
 ## database
 ### setting
