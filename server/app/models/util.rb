@@ -4,12 +4,32 @@ module JapaneseUtil
   }
 
   def self.jp_to_segments(text)
-    segments = MeCab::Tagger.new.parse(text).split(',')
+    segments = Array.new
+
+    lines = MeCab::Tagger.new.parse(text).split("\n")
+    for i in 0..lines.length-2
+      line = lines[i]
+      elements = line.split("\t")
+      if elements.length > 0
+        segments.push(elements[0])
+      end
+    end
+
     segments
   end
 
-  def self.segments_to_kanas(segments)
-    kanas ''
+  def self.jp_to_kanas(text)
+    kanas = Array.new
+
+    lines = MeCab::Tagger.new.parse(text).split("\n")
+    for i in 0..lines.length-2
+      line = lines[i]
+      elements = line.split(",")
+      if elements.length > 0
+        kanas.push(elements[-2])
+      end
+    end
+
     kanas
   end
 

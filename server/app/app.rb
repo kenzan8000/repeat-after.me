@@ -86,7 +86,8 @@ get '/record/post/:record_title_id' do
     # segments
     @segments = JapaneseUtil.jp_to_segments(@record_title.text_jp)
     # romajis
-    @romajis = JapaneseUtil.kana_to_romajis(@segments)
+    kanas = JapaneseUtil.jp_to_kanas(@record_title.text_jp)
+    @romajis = JapaneseUtil.kana_to_romajis(kanas)
 
     haml :record_post
   else
