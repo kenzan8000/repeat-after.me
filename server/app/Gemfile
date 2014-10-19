@@ -6,7 +6,7 @@ gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'omniauth-facebook'
 gem "koala", "~> 1.10.0rc"
-gem 'pronounce'
+gem 'mecab'
 gem 'json'
 gem 'compass'
 gem 'sass'

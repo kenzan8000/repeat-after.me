@@ -80,13 +80,14 @@ get '/record/post/:record_title_id' do
       return
     end
 
-    # record_title_en
-    @record_title_en = @record_title.text_en.split(' ')
+    ## record_title_en
+    #@record_title_en = @record_title.text_en.split(' ')
     # tts api
     @tts_uri = URI(TTS_API)
     @tts_uri.query = URI.encode_www_form({'ie' => 'UTF-8', 'tl' => 'en-us', 'q' => @record_title.text_en})
-    # American IPA
-    @ipa = AmericanIPA.text_to_ipa(@record_title.text_en)
+    ## American IPA
+    #@ipa = AmericanIPA.text_to_ipa(@record_title.text_en)
+    @segments = MeCab::Tagger.new.parse(@record_title.text_en)
 
     haml :record_post
   else

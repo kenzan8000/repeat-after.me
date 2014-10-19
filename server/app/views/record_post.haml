@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:charset => "utf-8"}
-    %title 録音してみよう | REPEAT AFTER ME - for learning Japanese -
+    %title Memorization | REPEAT AFTER ME - for learning Japanese -
 
     %script{:type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"}
     %script{:type => "text/javascript", :src => "/js/record_post.js"}
@@ -15,6 +15,7 @@
 
     %div.content
 
+      / bread crumbs
       %div.bread-crumbs
         &gt;&nbsp;
         %a.bread-crumb{:href => "/record/titles"} Phrases
@@ -25,6 +26,7 @@
 
       %div.record-wrapper
         %div.record
+
           / google tts
           %div.tts_wrapper.bread-crumb
             %a.tts-play-button.pure-button.get-started-button{:onclick => "playTTS('#{@tts_uri.to_s}');"}
@@ -32,12 +34,12 @@
 
           / record title and American IPA
           %div.record-title
-            - for i in 0..@record_title_en.length
+            - for i in 0..@segments.length
               %ruby
-                %rb #{@record_title_en[i]}
-                %rt.ruby-char #{@ipa[i]}
+                %rb #{@segments[i]}
+                %rt.ruby-char #{@segments[i]}
             %div.record-title-translation
-              #{@record_title.text_jp}
+              #{@record_title.text_en}
 
           / previous and next word
           %div.bread-crumbs
